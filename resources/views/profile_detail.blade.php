@@ -1,7 +1,3 @@
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,27 +10,27 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="D:\Task-1\JAVA SCRIPT TUTORIALS\JAVA SCRIPT\jquery-3.4.1.js" type="text/javascript"></script>
     <script src="D:\Task-1\JAVA SCRIPT TUTORIALS\JAVA SCRIPT\jquery-ui-1.12.1\jquery-ui.js"></script>
-    <link rel = "stylesheet" href = "{{asset('css/ProfileStyle.css')}}">
-    <link rel = "stylesheet" href = "{{asset('css/profileshow.css')}}">
+    <link rel="stylesheet" href="{{asset('css/ProfileStyle.css')}}">
+    <link rel="stylesheet" href="{{asset('css/profileshow.css')}}">
 
 </head>
 
 <body>
 
 
-<div class = "row container  ">
+<div class="row container  ">
 
     <table>
         <tr>
-            <td class = "firstchild">
-                <img id = "image"  src = "{{$data['image']}}">
-                <button id = "edit" class = "btn">Edit profile</button>
-                <input class = "file-upload" type = "file" accept = "image/*"/>
+            <td class="firstchild">
+                <img id="image" src="{{$data['image']}}">
+                <button id="edit" class="btn">Edit profile</button>
+                <input class="file-upload" type="file" accept="image/*"/>
 
             </td>
-            <td class = "secondchild">
+            <td class="secondchild">
                 <div>
-                    <table class = "details">
+                    <table class="details">
                         <tr>
                             <td> Name:</td>
                             <td>{{$data['name']}}</td>
@@ -63,15 +59,15 @@
     <hr>
     <table>
         <tr>
-            <td class = "firstchild ">
-                <div style = "align-content: center; font-size:larger; text-transform: uppercase;color: darkgreen">
+            <td class="firstchild ">
+                <div style="align-content: center; font-size:larger; text-transform: uppercase;color: darkgreen">
                     10 Mark Percentage:{{$data['tenth_per']}}%<br>
                     12 Mark Percentage:{{$data['twelfth_per']}}%<br>
                     social media usage:{{$data['usage']}}%
                 </div>
             </td>
             </td>
-            <td class = "secondchild">
+            <td class="secondchild">
                 <table>
                     <tr>
                         <td> Favourite Show:</td>
@@ -94,7 +90,9 @@
 
 
 </div>
-<a href="{{ url()->previous() }}"> <button style="border-radius: 10px; color: blue;">previous page</button></a>
+<a href="{{ url()->previous() }}">
+    <button style="border-radius: 10px; color: blue;">previous page</button>
+</a>
 </body>
 <script>
     $(document).ready(function () {

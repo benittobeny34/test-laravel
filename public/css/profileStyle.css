@@ -29,7 +29,7 @@ table {
     margin-left: 20px;
 }
 
-input[type="text"], input[type="number"] ,input[type='email']{
+input[type="text"], input[type="number"], input[type='email'] {
     width: 300px;
 }
 
@@ -37,8 +37,9 @@ table tr td:first-child {
     text-align: right;
     width: 50%;
 }
-.errormsg{
-    border:1px solid red;
+
+.errormsg {
+    border: 1px solid red;
 }
 
 table tr td {
@@ -51,19 +52,16 @@ input[type="checkbox"] {
 }
 
 
-
 * {
     box-sizing: border-box;
 }
-
-
 
 
 h1 {
     text-align: center;
 }
 
-input[type='text'],input[type='email'] {
+input[type='text'], input[type='email'] {
     padding: 10px;
     width: 100%;
     font-size: 17px;
