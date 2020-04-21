@@ -22,15 +22,6 @@ class PostController extends Controller
         return view('show_details')->with("users", $users_data);
     }
 
-    public function datatable()
-    {
-        return view('datatable.index');
-    }
-
-    public function anyData()
-    {
-        return Datatables::of(Post::query())->make(true);
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -96,5 +87,18 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+
+    
+    public function datatable()
+    {
+        return view('datatable.index');
+    }
+
+    public function anyData()
+    {
+        return Datatables::of(Post::query())->make(true);
     }
 }

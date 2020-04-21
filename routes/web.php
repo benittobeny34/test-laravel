@@ -26,8 +26,16 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+// Route::get('addpost',function(){
+// 	return view('post.addpost');
+// })->middleware('auth');
 Route::get('addpost',function(){
-	return view('post.addpost');
+	return view('template.index');
 })->middleware('auth');
 Route::post('addpost','HomeController@addNewPost');
 Route::resource('home', 'HomeController');
+
+
+Route::get('template',function(){
+	return view('template.index');
+});
