@@ -26,9 +26,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-// Route::get('addpost',function(){
-// 	return view('post.addpost');
-// })->middleware('auth');
 Route::get('addpost',function(){
 	return view('template.addpost');
 })->middleware('auth');
@@ -40,3 +37,5 @@ Route::resource('home', 'HomeController');
 Route::get('yourposts',function(){
 	return view('template.yourposts');
 });
+
+Route::post('home/edit/{id}','Homecontroller@viaAjaxEdit');

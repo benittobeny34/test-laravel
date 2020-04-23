@@ -8,8 +8,7 @@
                                 <th>title</th>
                                 <th>Description</th>
                                 <th>Created At</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
+                                <th>view</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -18,12 +17,7 @@
                                     <td>{{$post->title}}</td>
                                     <td>{{$post->description}}</td>
                                     <td>{{$post->created_at->diffForHumans()}}</td>
-                                    <td>
-                                        <button class="btn btn-info"><a href="home/{{$post->id}}/edit">Edit</a></button>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-danger"><a href="home/{{$post->id}}">Delete</a></button>
-                                    </td>
+                                    <td><button class="btn btn-info"><a href="home/{{$post->id}}">view</a></button></td>
                                 </tr>
                             @endforeach
                             </tbody>

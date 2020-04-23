@@ -15,6 +15,7 @@ class HomeController extends Controller
      *
      * @return void
      */
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -45,17 +46,23 @@ class HomeController extends Controller
         return redirect('/home');
     }
 
-    public function edit($id)
-    {
-        $post = Post::where('id', $id)->first();
-
-        return view('template.editpost')->with('post', $post);
-    }
-
     public function show($id)
     {
-        Post::where('id', $id)->delete();
-        return redirect('/home');
+        $post =Post::where('id', $id)->get()->first();
+        return view('template.viewpost')->with('post',$post);
+    }
+
+    public function update(PostValidation $request, $id){
+        Post::where('id',$id)->update(
+           $request->only(['title','description'])
+       );
+
+        return response()->json([
+            'success'=>'Data is successfully added',
+            'title'=>$request->title,
+            'description'=>$request->description
+        ]);
+
     }
 
 

@@ -7,20 +7,34 @@
                     <title>
                       Blog
                     </title>
-                    <!-- Favicon icon -->
-                    <link href="images/favicon.png" rel="icon" sizes="16x16" type="image/png">
-                        <!-- Pignose Calender -->
-                        <link href="./plugins/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
-                            <!-- Chartist -->
-                            <link href="./plugins/chartist/css/chartist.min.css" rel="stylesheet">
-                                <link href="./plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css" rel="stylesheet">
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="{{asset('js/post.js')}}"></script>
+                    
                                     <!-- Custom Stylesheet -->
                                     <link href="{{asset('css/templateStyle.css')}}" rel="stylesheet">
-                                    </link>
-                                </link>
-                            </link>
-                        </link>
-                    </link>
+                               
+                                   
+                                
                 </meta>
             </meta>
         </meta>
@@ -50,8 +64,6 @@
             Header start
         ***********************************-->
             <div class="header">
-                
-
                          @component('layouts.app')
                         @endcomponent
 
@@ -134,4 +146,11 @@
     ***********************************-->
         
     </body>
+
+    <script src="{{asset('js/custom.min.js')}}"></script>
+    <script src="{{asset('js/dashboard-1.js')}}"></script>
+    <script src="{{asset('js/gleek.js')}}"></script>
+    <script src="{{asset('js/settings.js')}}"></script>
+    <script src="{{asset('js/styleSwitcher.js')}}"></script>
+   
 </html>
