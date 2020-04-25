@@ -237,11 +237,7 @@ svg {
   vertical-align: middle; }
 
 table {
-  border-collapse: collapse;
-   }
-table th,td{
-  text-align: center;
-}
+  border-collapse: collapse; }
 
 caption {
   padding-top: 0.75rem;

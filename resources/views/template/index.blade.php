@@ -5,7 +5,7 @@
             <meta content="IE=edge" http-equiv="X-UA-Compatible">
                 <meta content="width=device-width,initial-scale=1" name="viewport">
                     <title>
-                      Blog
+                        Quixlab - Bootstrap Admin Dashboard Template by Themefisher.com
                     </title>
                     <!-- Favicon icon -->
                     <link href="images/favicon.png" rel="icon" sizes="16x16" type="image/png">
@@ -40,8 +40,21 @@
             <!--**********************************
             Nav header start
         ***********************************-->
-            <div class="nav-header" style="text-align: center;padding:1rem;background-color: gray;">
-               <h2>Blog</h2>
+            <div class="nav-header">
+                <div class="brand-logo">
+                    <a href="index.html">
+                        <b class="logo-abbr">
+                            Laravel
+                        </b>
+                        <span class="logo-compact">
+                            <img alt="" src="./images/logo-compact.png"/>
+                        </span>
+                        <span class="brand-title">
+                            <img alt="" src="images/logo-text.png">
+                            </img>
+                        </span>
+                    </a>
+                </div>
             </div>
             <!--**********************************
             Nav header end
@@ -50,11 +63,22 @@
             Header start
         ***********************************-->
             <div class="header">
-                
-
-                         @component('layouts.app')
-                        @endcomponent
-
+                <div class="header-content clearfix">
+                    <div class="nav-control">
+                        <div class="hamburger">
+                            <span class="toggle-icon">
+                                <i class="icon-menu">
+                                </i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="header-left">
+                        
+                    </div>
+                    <div class="header-right">
+                        
+                    </div>
+                </div>
             </div>
             <!--**********************************
             Header end ti-comment-alt
@@ -66,31 +90,21 @@
                 <div class="nk-nav-scroll">
                     <ul class="metismenu" id="menu">
                    <li>
-                            
+                            <a aria-expanded="false" class="has-arrow" href="javascript:void()">
+                                <i class="icon-speedometer menu-icon">
+                                </i>
+                                <span class="nav-text">
+                                    Dashboard
+                                </span>
+                            </a>
+                            <ul aria-expanded="false">
                                 <li>
-                                    <a href="/home">
-                                        Your Posts
+                                    <a href="./index.html">
+                                        Home 1
                                     </a>
                                 </li>
-
-                                <li>
-                                    <a href="/addnewpost">
-                                        New Post
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        Other field
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        Other field
-                                    </a>
-                                </li>
-                             
+                                <!-- <li><a href="./index-2.html">Home 2</a></li> -->
+                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -103,7 +117,8 @@
         ***********************************-->
             <div class="content-body">
                 <div class="container-fluid mt-3">
-                    @yield('content')
+                    @component('post.addpost')
+                    @endcomponent
                     </div>
                 </div>
                 <!-- #/ container -->
