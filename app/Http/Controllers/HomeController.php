@@ -53,6 +53,7 @@ class HomeController extends Controller
     }
 
     public function update(PostValidation $request, $id){
+
         Post::where('id',$id)->update(
            $request->only(['title','description'])
        );
