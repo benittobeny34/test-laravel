@@ -27,35 +27,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = Post::where('user_id', Auth::id())->get();
-        return view('home')->with('posts', $posts);
+
+        $users_data = DB::table('posts')->get();
+
+        return view('show_details')->with("users", $users_data);
     }
 
 
-    public function addNewPost(Request $request)
-    {
-
-        Post::insert(['name' => Auth::user()->name,
-            'email' => Auth::user()->email,
-            'title' => $request->title,
-            'description' => $request->description,
-            'user_id' => Auth::id()
-        ]);
-        return redirect('/home');
-    }
-
-    public function edit($id)
-    {
-        $post = Post::where('id', $id)->first();
-
-        return view('post.editpost')->with('post', $post);
-    }
-
-    public function show($id)
-    {
-        Post::where('id', $id)->delete();
-        return redirect('/home');
-    }
+   
 
 
 }

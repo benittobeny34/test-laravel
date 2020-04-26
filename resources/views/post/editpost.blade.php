@@ -1,14 +1,18 @@
-@extends('layouts.app')
-@section('content')
+@extends('template.index')
+@section('main-content')
 	<div class="container ">
 	<form method="post" action="/addpost">
 		@csrf
 
-		<label>Title</label>
-		<input type="text"  class="form-control" name="title" value="{{$post->title}}">
-		<label>Description</label>
-		<textarea rows=8 class="form-control" name="description">{{$post->description}}</textarea>
-		<button type="submit" class="btn btn-primary">post</button>
+		<div class="form-group">
+					<label>Title:</label>
+                    <input type="text" name="title" class="form-control input-flat" value="{{$post->title}}">
+        </div>
+		<div class="form-group">
+  			<label>Description:</label>
+		<textarea class="form-control h-150px" rows="6" name="description" id="description">{{$post->description}} </textarea>
+   </div>
+		<button type="submit" class="btn btn-dark">Update</button>
 	</form>
 
 	</div>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
-use Yajra\Datatables\Datatables;
+
 use App\Post;
 
 class PostController extends Controller
@@ -14,12 +14,16 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function  __construct(){
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         //
-        $users_data = DB::table('posts')->get();
-
-        return view('show_details')->with("users", $users_data);
+        $posts = Post::where('user_id', Auth::id())->get();
+        return view('home')->with('posts', $posts);
     }
 
 
@@ -39,66 +43,29 @@ class PostController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function addNewPost(Request $request)
     {
-        //
+
+        Post::insert(['name' => Auth::user()->name,
+            'email' => Auth::user()->email,
+            'title' => $request->title,
+            'description' => $request->description,
+            'user_id' => Auth::id()
+        ]);
+        return redirect('/home');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $post = Post::where('id', $id)->first();
+
+        return view('post.editpost')->with('post', $post);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function show($id)
     {
-        //
+        Post::where('id', $id)->delete();
+        return redirect('/home');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
-
-
-    
-    public function datatable()
-    {
-        return view('datatable.index');
-    }
-
-    public function anyData()
-    {
-        return Datatables::of(Post::query())->make(true);
-    }
 }
