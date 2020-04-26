@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 
+use Auth;
+
 use App\Post;
 
 class PostController extends Controller
@@ -18,11 +20,12 @@ class PostController extends Controller
     public function  __construct(){
         $this->middleware('auth');
     }
-    
+
     public function index()
     {
         //
         $posts = Post::where('user_id', Auth::id())->get();
+       
         return view('home')->with('posts', $posts);
     }
 
@@ -50,7 +53,8 @@ class PostController extends Controller
             'email' => Auth::user()->email,
             'title' => $request->title,
             'description' => $request->description,
-            'user_id' => Auth::id()
+            'user_id' => Auth::id(),
+            'created_at'=>now(),
         ]);
         return redirect('/home');
     }
@@ -64,8 +68,21 @@ class PostController extends Controller
 
     public function show($id)
     {
-        Post::where('id', $id)->delete();
+        $post=Post::where('id', $id)->first();
+        return view('post.view')->with('post',$post);
+    }
+
+    public function update(Request $request,$id){
+            Post::where('id',$id)->update($request->only(
+                ['title','description','created_at',])
+               );
+            return redirect('/home');
+    }
+
+    public function destroy($id){
+        Post::where('id',$id)->delete();
         return redirect('/home');
     }
+
 
 }

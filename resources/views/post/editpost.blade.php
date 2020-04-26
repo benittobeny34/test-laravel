@@ -1,10 +1,17 @@
 @extends('template.index')
 @section('main-content')
 	<div class="container ">
-	<form method="post" action="/addpost">
+	{{-- <form method="post" action="{{route('home.update',[$post->id])}}"> --}}
+	<form method="post" action="/home/{{$post->id}}">
 		@csrf
-
+ 		{{-- {{ method_field('PUT') }} --}}
+ 		<input type="hidden" name="_method" value="PUT">
 		<div class="form-group">
+			@if(count($errors) > 0)
+				@foreach($errors->all() as $error)
+					<div class="alert alert-danger">$error</div>
+				@endforeach
+			@endif
 					<label>Title:</label>
                     <input type="text" name="title" class="form-control input-flat" value="{{$post->title}}">
         </div>

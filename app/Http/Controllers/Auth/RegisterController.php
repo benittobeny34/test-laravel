@@ -70,4 +70,11 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+
+//override
+   public function showRegistrationForm()
+    {
+        return view('template.register');
+    }
+
 }

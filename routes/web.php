@@ -22,11 +22,6 @@ Route::get('show','HomeController@index');
 
 Auth::routes();
 
-Route::get('/home', 'PostController@index')->name('home');
-
-// Route::get('addpost',function(){
-// 	return view('post.addpost');
-// })->middleware('auth');
 Route::get('addpost',function(){
 	return view('post.addpost');
 })->middleware('auth');
