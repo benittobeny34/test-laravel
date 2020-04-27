@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Debugbar;
 use Illuminate\Http\Request;
+use App\Http\Requests\PostValidation;
 use DB;
 
 use Auth;
@@ -46,7 +47,7 @@ class PostController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function addNewPost(Request $request)
+    public function addNewPost(PostValidation $request)
     {
 
         Post::insert(['name' => Auth::user()->name,
@@ -72,11 +73,13 @@ class PostController extends Controller
         return view('post.view')->with('post',$post);
     }
 
-    public function update(Request $request,$id){
+    public function update(PostValidation $request,$id){
+            info('coming');
             Post::where('id',$id)->update($request->only(
-                ['title','description','created_at',])
+                ['title','description',])
                );
-            return redirect('/home');
+            return response()->json([
+                'response'=>'success','title'=>$request->title,'description'=>$request->description]);
     }
 
     public function destroy($id){

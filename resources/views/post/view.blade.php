@@ -1,38 +1,60 @@
 @extends('template.index')
-
 @section('main-content')
-           <div>
-               <button class="btn btn-sm btn-outline-primary" style="float:right"><a href="/addpost">Add New post</a></button>
-           </div>
-           <div>
- 
-                <div class="row ">
-                    <div class="col-12">
-                        <div class="card px-1">
-                            <h2>{{$post->title}}</h2><span>{{$post->created_at->diffForHumans()}}</span>
-                            <div class="card-body">
-                                <p>{{$post->description}}</p>
-                            </div>
-                            <div>
-                        <table><tr>
-                            <td>
-    
-                            <button  class="btn btn-sm btn-outline-primary"><a href="/home/{{$post->id}}/edit">Edit</a></button>                       
-                            </td>
-                            <td class="px-3">
-                            <form action="/home/{{$post->id}}">
+<div class="container">
+        <h1 id="post-title">{{$post->title}}</h1>
+        <h5>{{$post->created_at->diffForHumans()}}</h5>
+        <div id="post-description" class="jumbotron">
+            {{$post->description}}
+        </div>
+</div>
+ <table>
+    <tr>
+        <td><button  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal-{{$post->id}}">Edit</button>
+        </td>
+         <td>
+            <form method="post" action={{route('home.destroy',$post->id)}}>
+                @csrf
+                {{ method_field('DELETE') }}
+            <button  class="btn btn-danger" type="submit">Discard</button> 
+         </form>
+        </td>
+     </tr>
+     </table>
+
+
+                     <div class="modal fade" id="exampleModal-{{$post->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <form method="post" id="editform" action="{{route('home.update',[$post->id])}}">
                                 @csrf
-                                @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
-                            </form>
-                        </td>
-                            </tr></table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-         </div>
-
+                            
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Edit Post</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                        <div class="form-group">
+                                                            <label for="recipient-name" class="col-form-label">Title:</label>
+                                                            <input type="text" name="title" class="form-control" id="title" value="{{$post->title}}">
+                                                            <span id="title-error" class="text-danger"></span>
+                                                            
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="description" class="col-form-label">Description:</label>
+                                                            <textarea name="description" class="form-control" id="description">{{$post->description}}</textarea>
+                                                            <span id="message-error" class="text-danger"></span>
+                                                            
+                                                        </div>
+                                                    
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button   id="update-post" class="btn btn-primary">Save Changes</button>
+                                                </div>
+                                            </div>
+                                            </form>
+                                        </div>
+                                    </div>
 
 @endsection
