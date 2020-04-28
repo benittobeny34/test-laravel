@@ -1,9 +1,6 @@
 @extends('template.index')
 
-@section('main-content')
-           <div>
-               <button class="btn btn-sm btn-outline-primary" style="float:right"><a href="/addpost">Add New post</a></button>
-           </div>
+@section('content')
            <div>
  
                 <div class="row ">
@@ -17,10 +14,10 @@
                         <table><tr>
                             <td>
     
-                            <button  class="btn btn-sm btn-outline-primary"><a href="/home/{{$post->id}}/edit">Edit</a></button>                       
+                            <button  class="btn btn-sm btn-outline-primary"><a href="{{route('home.edit',$post->id)}}">Edit</a></button>                       
                             </td>
                             <td class="px-3">
-                            <form action="/home/{{$post->id}}">
+                            <form method="post" action="{{route('home.destroy',$post->id)}}">
                                 @csrf
                                 @method('DELETE')
                             <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>

@@ -1,10 +1,10 @@
 @extends('template.index')
-@section('main-content')
+@section('content')
 	<div class="container ">
 	{{-- <form method="post" action="{{route('home.update',[$post->id])}}"> --}}
 	<form method="post" action="/home/{{$post->id}}">
 		@csrf
- 		{{-- {{ method_field('PUT') }} --}}
+
  		<input type="hidden" name="_method" value="PUT">
 		<div class="form-group">
 			@if(count($errors) > 0)

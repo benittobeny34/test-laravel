@@ -9,13 +9,10 @@ use Auth;
 
 use App\Post;
 
+use Yajra\Datatables\Datatables;
+
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
 
     public function  __construct(){
         $this->middleware('auth');
@@ -24,17 +21,10 @@ class PostController extends Controller
     public function index()
     {
         //
-        $posts = Post::where('user_id', Auth::id())->get();
-       
-        return view('home')->with('posts', $posts);
+        return view('home');
     }
 
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
@@ -46,18 +36,7 @@ class PostController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function addNewPost(Request $request)
-    {
 
-        Post::insert(['name' => Auth::user()->name,
-            'email' => Auth::user()->email,
-            'title' => $request->title,
-            'description' => $request->description,
-            'user_id' => Auth::id(),
-            'created_at'=>now(),
-        ]);
-        return redirect('/home');
-    }
 
     public function edit($id)
     {
@@ -72,7 +51,8 @@ class PostController extends Controller
         return view('post.view')->with('post',$post);
     }
 
-    public function update(Request $request,$id){
+    public function update(Request $request,$id)
+    {
             Post::where('id',$id)->update($request->only(
                 ['title','description','created_at',])
                );
@@ -83,6 +63,50 @@ class PostController extends Controller
         Post::where('id',$id)->delete();
         return redirect('/home');
     }
+
+    public function addNewPost(Request $request)
+    {
+        $this->validate($request,[
+            'title'=>'required',
+            'description'=>'required',
+        ]);
+
+        Post::insert(['name' => Auth::user()->name,
+            'email' => Auth::user()->email,
+            'title' => $request->title,
+            'description' => $request->description,
+            'user_id' => Auth::id(),
+            'created_at'=>now(),
+        ]);
+        return redirect('/home');
+    }
+
+
+    public function allPosts()
+    {
+
+
+        $posts = Post::select(['id', 'name', 'email', 'title', 'description', 'created_at']);
+
+        return Datatables::of($posts)
+            ->addColumn('action', function ($post) {
+                return '<a href="home/'.$post->id.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Show</a>';
+            })->make(true);
+    }
+
+     public function myPosts()
+    {
+
+
+        $posts = Post::where('user_id',Auth::id())->select(['id', 'name', 'email', 'title', 'description', 'created_at']);
+
+        return Datatables::of($posts)
+            ->addColumn('action', function ($post) {
+                return '<a href="home/'.$post->id.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Show</a>';
+            })->make(true);
+    }
+
+    // return Datatables::of(Post::query())->make(true);
 
 
 }

@@ -16,18 +16,12 @@
         </thead>
     </table>
 
-   
-        <!-- jQuery -->
-
-        <!-- DataTables -->
-         
-
 <script type="text/javascript">  
   $(function() {
     $('#users-table').DataTable({
         processing: true,
         serverSide: true,
-        ajax: '{!! route("all-posts") !!}',
+        ajax: '{!! route("my-posts") !!}',
         columns: [
             { data: 'id', name: 'id' },
             { data: 'name', name: 'name' },
