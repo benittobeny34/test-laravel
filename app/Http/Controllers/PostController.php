@@ -86,7 +86,7 @@ class PostController extends Controller
     {
 
 
-        $posts = Post::select(['id', 'name', 'email', 'title', 'description', 'created_at']);
+        $posts = Post::all();
 
         return Datatables::of($posts)
             ->addColumn('action', function ($post) {
@@ -98,7 +98,8 @@ class PostController extends Controller
     {
 
 
-        $posts = Post::where('user_id',Auth::id())->select(['id', 'name', 'email', 'title', 'description', 'created_at']);
+        $posts = Post::where('user_id',Auth::id())->get();
+   
 
         return Datatables::of($posts)
             ->addColumn('action', function ($post) {
