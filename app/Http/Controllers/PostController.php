@@ -28,7 +28,7 @@ class PostController extends Controller
 
     public function anyData()
     {
-        return Datatables::of(Post::query())->make(true);
+        return Datatables::of(Post::all())->make(true);
     }
 
     /**
