@@ -1,7 +1,8 @@
-@extends('datatable.master')
+@extends('template.index')
 
 @section('content')
-    <table class="table table-bordered" id="users-table">
+
+       <table class="table table-bordered" id="users-table">
         <thead>
             <tr>
                 <th>Id</th>
@@ -10,19 +11,17 @@
                 <th>title</th>
                 <th>Description</th>
                 <th>Created At</th>
-                <th>Updated At</th>
+                <th>Action</th>
             </tr>
         </thead>
     </table>
-@stop
 
-@push('scripts')
-<script>
-$(function() {
+<script type="text/javascript">  
+  $(function() {
     $('#users-table').DataTable({
         processing: true,
         serverSide: true,
-        ajax: '{!! route('datatables.data') !!}',
+        ajax: '{!! route("my-posts") !!}',
         columns: [
             { data: 'id', name: 'id' },
             { data: 'name', name: 'name' },
@@ -30,9 +29,9 @@ $(function() {
             { data: 'title', name: 'tilte' },
             { data: 'description', name: 'description' },
             { data: 'created_at', name: 'created_at' },
-            { data: 'updated_at', name: 'updated_at' }
+            { data: 'action', name: 'action', orderable: false, searchable: false}
         ]
     });
 });
 </script>
-@endpush
+@endsection

@@ -1,5 +1,5 @@
 
-    @extends('template.layout')
+    @extends('template.index')
     @section('content')
     <div class="login-form-bg h-100">
         <div class="container h-100">

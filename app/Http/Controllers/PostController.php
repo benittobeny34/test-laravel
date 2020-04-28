@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\PostValidation;
 use DB;
 
+use Yajra\Datatables\Datatables;
 use Auth;
 
 use App\Post;
@@ -24,10 +25,8 @@ class PostController extends Controller
 
     public function index()
     {
-        //
-        $posts = Post::where('user_id', Auth::id())->get();
-       
-        return view('home')->with('posts', $posts);
+
+        return view('home');
     }
 
 
@@ -74,7 +73,7 @@ class PostController extends Controller
     }
 
     public function update(PostValidation $request,$id){
-            info('coming');
+
             Post::where('id',$id)->update($request->only(
                 ['title','description',])
                );
@@ -85,6 +84,31 @@ class PostController extends Controller
     public function destroy($id){
         Post::where('id',$id)->delete();
         return redirect('/home');
+    }
+
+    public function allPosts()
+    {
+
+        info('allPosts executed ');
+        $posts = Post::all();
+
+        return Datatables::of($posts)
+            ->addColumn('action', function ($post) {
+                return '<a href="home/'.$post->id.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Show</a>';
+            })->make(true);
+    }
+
+     public function myPosts()
+    {
+
+          
+        $posts = Post::where('user_id',Auth::id())->get();
+   
+
+        return Datatables::of($posts)
+            ->addColumn('action', function ($post) {
+                return '<a href="home/'.$post->id.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Show</a>';
+            })->make(true);
     }
 
 

@@ -1,5 +1,5 @@
 @extends('template.index')
-@section('main-content')
+@section('content')
 <div class="container">
         <h1 id="post-title">{{$post->title}}</h1>
         <h5>{{$post->created_at->diffForHumans()}}</h5>
