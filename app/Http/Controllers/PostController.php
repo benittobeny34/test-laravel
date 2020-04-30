@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Debugbar;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostValidation;
@@ -9,7 +10,11 @@ use DB;
 use Yajra\Datatables\Datatables;
 use Auth;
 
+use App\User;
+
 use App\Post;
+
+use App\Comment;
 
 class PostController extends Controller
 {
@@ -19,7 +24,8 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function  __construct(){
+    public function __construct()
+    {
         $this->middleware('auth');
     }
 
@@ -54,7 +60,7 @@ class PostController extends Controller
             'title' => $request->title,
             'description' => $request->description,
             'user_id' => Auth::id(),
-            'created_at'=>now(),
+            'created_at' => now(),
         ]);
         return redirect('/home');
     }
@@ -68,23 +74,27 @@ class PostController extends Controller
 
     public function show($id)
     {
-        $post=Post::where('id', $id)->first();
-        return view('post.view')->with('post',$post);
+        $post = Post::where('id', $id)->first();
+        return view('post.view')->with('post', $post);
     }
 
-    public function update(PostValidation $request,$id){
+    public function update(PostValidation $request, $id)
+    {
 
-            Post::where('id',$id)->update($request->only(
-                ['title','description',])
-               );
-            return response()->json([
-                'response'=>'success','title'=>$request->title,'description'=>$request->description]);
+        Post::where('id', $id)->update($request->only(
+            ['title', 'description',])
+        );
+        return response()->json([
+            'response' => 'success', 'title' => $request->title, 'description' => $request->description]);
     }
 
-    public function destroy($id){
-        Post::where('id',$id)->delete();
+    public function destroy($id)
+    {
+        Post::where('id', $id)->delete();
         return redirect('/home');
     }
+
+    //Task12
 
     public function allPosts()
     {
@@ -94,20 +104,18 @@ class PostController extends Controller
 
         return Datatables::of($posts)
             ->addColumn('action', function ($post) {
-                return '<a href="home/'.$post->id.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Show</a>';
+                return '<a href="home/' . $post->id . '" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Show</a>';
             })->make(true);
     }
 
-     public function myPosts()
+    public function myPosts()
     {
 
-          
-        $posts = Post::where('user_id',Auth::id())->get();
-   
+        $posts = Post::where('user_id', Auth::id())->get();
 
         return Datatables::of($posts)
             ->addColumn('action', function ($post) {
-                return '<a href="home/'.$post->id.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Show</a>';
+                return '<a href="home/' . $post->id . '" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Show</a>';
             })->make(true);
     }
 

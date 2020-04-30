@@ -26,7 +26,7 @@ class PostValidation extends FormRequest
         info('rules executed');
         return [
             'title' => 'required',
-            'description'=>'required',
+            'description' => 'required',
         ];
     }
 
@@ -34,7 +34,7 @@ class PostValidation extends FormRequest
     {
         return [
             'title.required' => 'A :attribute is required it something short form of your thoughts',
-            'description.required'  => 'A message is required. it detailly describe your thoughts',
+            'description.required' => 'A message is required. it detailly describe your thoughts',
         ];
     }
 }
