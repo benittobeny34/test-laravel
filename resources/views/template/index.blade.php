@@ -3,14 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Blog</title>
+
+    <link rel="stylesheet" type="text/css" href="{{asset('css/taginput.min.css')}}">
+
     <script src="{{asset('js/jquery.min.js')}}"></script>
     <link rel="stylesheet" type="text/css" href="{{asset('css/templateStyle.css')}}">
 
+    {{-- datatable --}}
     <link rel="stylesheet" href="{{asset('datatable/dataTables.min.css')}}">
     <script src="{{asset('datatable/dataTables.min.js')}}" defer></script>
+
     <script src="{{asset('js/post.js')}}"></script>
+    {{-- toastr --}}
     <script src="{{asset('plugins/toastr/js/toastr.min.js')}}"></script>
     <link rel="stylesheet" type="text/css" href="{{asset('plugins/toastr/css/toastr.min.css')}}">
+    {{-- tag input --}}
+    <script src="{{asset('js/taginput.min.js')}}"></script>
 
 
     <style type="text/css">

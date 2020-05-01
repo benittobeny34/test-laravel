@@ -23,10 +23,11 @@ class PostValidation extends FormRequest
      */
     public function rules()
     {
-        info('rules executed');
+
         return [
             'title' => 'required',
             'description' => 'required',
+            'tags'=>'required',
         ];
     }
 
@@ -35,6 +36,8 @@ class PostValidation extends FormRequest
         return [
             'title.required' => 'A :attribute is required it something short form of your thoughts',
             'description.required' => 'A message is required. it detailly describe your thoughts',
+            
+            'tags.required' => 'Minimum one tag is required',
         ];
     }
 }

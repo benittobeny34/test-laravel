@@ -2,28 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c1790581-d73a-4664-989a-01f1f77e0010" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PostController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PostController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Requests/PostValidation.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/PostValidation.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Post.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Post.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/datatable/dataTables.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/datatable/dataTables.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/datatable/dataTables.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/datatable/dataTables.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/jquery.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/jquery.min.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/post.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/post.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/telescope/app-dark.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/telescope/app-dark.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/telescope/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/telescope/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/telescope/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/telescope/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/telescope/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/telescope/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/post/addpost.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/post/addpost.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/post/editpost.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/post/editpost.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/post/my-post.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/post/my-post.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/post/editpost.blade.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/post/view.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/post/view.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/template/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/template/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/template/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/template/login.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/template/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/template/register.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test-laravel" beforeDir="false" afterPath="$PROJECT_DIR$/test-laravel" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test-laravel/.editorconfig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/test-laravel/.env.example" beforeDir="false" />
@@ -168,17 +155,18 @@
       <updated>1587317143861</updated>
       <workItem from="1587317151161" duration="367000" />
       <workItem from="1588263528096" duration="709000" />
+      <workItem from="1588346488845" duration="460000" />
     </task>
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="439" y="167" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1587317474144">
+    <state x="439" y="167" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1588346840263">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="439" y="167" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1587317474144" />
-    <state x="378" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1588263525920">
+    <state x="439" y="167" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1588346840263" />
+    <state x="378" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1588346516013">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="378" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1588263525920" />
+    <state x="378" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1588346516013" />
   </component>
 </project>

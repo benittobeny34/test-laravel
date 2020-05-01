@@ -17,6 +17,7 @@
         <h5>{{$post->created_at->diffForHumans()}}</h5>
         <div id="post-description" class="jumbotron">
             {{$post->description}}
+
             <table>
                 <tr>
                     <td>
@@ -35,6 +36,10 @@
             </table>
         </div>
     </div>
+    <label>Tags:</label>
+    @foreach($tags as $tag)
+        <span class="label label-info">{{$tag}}</span>
+    @endforeach
 
 
 
@@ -65,7 +70,13 @@
                             <span id="message-error" class="text-danger"></span>
 
                         </div>
+                        <div class="form-group">
+                            <label for="description" class="col-form-label">Tags:</label>
+                            <input name="tags" id="input-tags" class="form-control input-flat"
+                                   value="@foreach($tags as $tag){{$tag}},@endforeach">
+                            <span id="tag-error" class="text-danger"></span>
 
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -94,5 +105,10 @@
             <button type="sumbit" class="btn btn-xs btn-primary ">View all Comments</button>
         </form>
     </div>
+
+
+    <script type="text/javascript">
+        $('#input-tags').tagsInput();
+    </script>
 
 @endsection

@@ -7,10 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     //
-    protected $fillable = ['title','description'];
+    protected $fillable = ['title', 'description'];
 
-    public function comments(){
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
 
-    	return $this->hasMany('App\Comment');
+    public function tags()
+    {
+        return $this->belongsToMany('App\Tag');
     }
 }
+

@@ -8,6 +8,7 @@ use App\Http\Requests\PostValidation;
 use DB;
 
 use Yajra\Datatables\Datatables;
+
 use Auth;
 
 use App\User;
@@ -15,6 +16,8 @@ use App\User;
 use App\Post;
 
 use App\Comment;
+
+use App\Tag;
 
 class PostController extends Controller
 {
@@ -55,13 +58,37 @@ class PostController extends Controller
     public function addNewPost(PostValidation $request)
     {
 
-        Post::insert(['name' => Auth::user()->name,
-            'email' => Auth::user()->email,
-            'title' => $request->title,
-            'description' => $request->description,
-            'user_id' => Auth::id(),
-            'created_at' => now(),
-        ]);
+        $post = new Post;
+
+        $post->name = Auth::user()->name;
+
+        $post->email = Auth::user()->email;
+
+        $post->title = $request->title;
+
+        $post->description = $request->description;
+
+        $post->user_id = Auth::id();
+
+        $post->created_at = now();
+
+        $post->save();
+
+        $tags = explode(",", $request->tags);
+
+
+        foreach ($tags as $value) {
+            if (!(Tag::where('name', $value)->exists())) {
+                $tagid[] = DB::table('tags')->insertGetId(['name' => $value,]);
+            } else {
+                $tagid[] = Tag::where('name', $value)->pluck('id')->first();
+            }
+        }
+
+        info($tagid);
+
+        $post->tags()->attach($tagid);
+
         return redirect('/home');
     }
 
@@ -74,16 +101,33 @@ class PostController extends Controller
 
     public function show($id)
     {
-        $post = Post::where('id', $id)->first();
-        return view('post.view')->with('post', $post);
+        $post = Post::find($id);
+        foreach ($post->tags as $tag) {
+            $tags[] = $tag->name;
+        }
+        return view('post.view')->with(['post' => $post, 'tags' => $tags]);
     }
 
     public function update(PostValidation $request, $id)
     {
 
-        Post::where('id', $id)->update($request->only(
+        Post::find($id)->update($request->only(
             ['title', 'description',])
         );
+
+        $tags = explode(",", $request->tags);
+
+        foreach ($tags as $value) {
+            if (!(Tag::where('name', $value)->exists())) {
+                $tagid[] = DB::table('tags')->insertGetId(['name' => $value,]);
+            } else {
+                $tagid[] = Tag::where('name', $value)->pluck('id')->first();
+            }
+        }
+
+        $post = Post::find($id);
+        $post->tags()->sync($tagid);
+
         return response()->json([
             'response' => 'success', 'title' => $request->title, 'description' => $request->description]);
     }

@@ -14,9 +14,16 @@
             </div>
             <div class="form-group">
                 <label>Description:</label>
-                <textarea class="form-control h-150px @error('title') is-invalid @enderror" rows="6"
+                <textarea class="form-control h-150px @error('description') is-invalid @enderror" rows="6"
                           placeholder="Description" name="description" id="description"></textarea>
                 @error('description')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label>Tags:</label>
+                <input name="tags" id="input-tags" class="form-control input-flat  @error('tags') is-invalid @enderror">
+                @error('tags')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
@@ -24,4 +31,7 @@
         </form>
 
     </div>
+    <script type="text/javascript">
+        $('#input-tags').tagsInput();
+    </script>
 @endsection

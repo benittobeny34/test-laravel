@@ -44,6 +44,8 @@ $(document).ready(function () {
 
                 if (errors.description)
                     $('#message-error').text(errors.description)
+                if (errors.tags)
+                    $('#tag-error').text(errors.tags)
             }
 
         });
@@ -57,6 +59,11 @@ $(document).ready(function () {
     $('#description').on('keyup', () => {
 
         $('#message-error').text('');
+    })
+
+    $('#input-tags').on('keyup', () => {
+
+        $('#tag-error').text('');
     })
 
     $('#comment-form').on('submit', (e) => {
@@ -161,6 +168,9 @@ $(document).ready(function () {
     }, () => {
         $('.operations').css('display', 'none');
     })
+
+
+    // task 16 Tagging
 
 
 });
