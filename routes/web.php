@@ -27,23 +27,59 @@ Route::get('template', function () {
     return view('template.index');
 });
 
+// Route::group(['middleware' => 'auth'], function () {
+
+//     Route::resource('home', 'PostController');
+
+//     Route::get('addpost', function () {
+//         return view('post.addpost');
+//     })->name('addpost');
+
+//     Route::post('addpost', 'PostController@addNewPost');
+
+//     Route::get('all-post', 'PostController@allPosts')->name('all-posts');
+
+//     Route::get('your-posts', function () {
+//         return view('post.my-post');
+//     })->name('your-posts');
+
+//     Route::get('my-posts', 'PostController@myPosts')->name('my-posts');
+
+//     Route::post('comment/{id}', 'CommentController@addComment')->name('comment');
+
+//     Route::get('view-comments/{id}', 'CommentController@viewComments')->name('view-comments');
+
+//     Route::get('comments/{id}/edit', 'CommentController@edit');
+
+//     Route::get('comments/{id}/delete', 'CommentController@destroy');
+
+//     Route::post('comments/{id}/{post_id}/update', 'CommentController@update')->name('comments.update');
+
+
+//     // more route definitions
+
+// });
+
+
+//QueryBuilder controller
+
 Route::group(['middleware' => 'auth'], function () {
 
-    Route::resource('home', 'PostController');
+    Route::resource('home', 'QueryBuilderPostController');
 
     Route::get('addpost', function () {
         return view('post.addpost');
     })->name('addpost');
 
-    Route::post('addpost', 'PostController@addNewPost');
+    Route::post('addpost', 'QueryBuilderPostController@addNewPost');
 
-    Route::get('all-post', 'PostController@allPosts')->name('all-posts');
+    Route::get('all-post', 'QueryBuilderPostController@allPosts')->name('all-posts');
 
     Route::get('your-posts', function () {
         return view('post.my-post');
     })->name('your-posts');
 
-    Route::get('my-posts', 'PostController@myPosts')->name('my-posts');
+    Route::get('my-posts', 'QueryBuilderPostController@myPosts')->name('my-posts');
 
     Route::post('comment/{id}', 'CommentController@addComment')->name('comment');
 
@@ -59,3 +95,5 @@ Route::group(['middleware' => 'auth'], function () {
     // more route definitions
 
 });
+
+

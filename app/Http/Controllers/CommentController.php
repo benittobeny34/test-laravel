@@ -9,6 +9,8 @@ use App\Post;
 use App\User;
 use App\Comment;
 
+use DB;
+
 class CommentController extends Controller
 {
 
@@ -73,6 +75,7 @@ class CommentController extends Controller
     public function viewComments($id)
     {
         $comments = Post::find($id)->comments;
+        // $comments = Db::table('posts')->join('comments','posts.id','=','comments.post_id')->where('post_id',24)->select('comments.comment')->get();
 
         $html = "";
 

@@ -19,7 +19,7 @@ use App\Comment;
 
 use App\Tag;
 
-class PostController extends Controller
+class QueryBuilderPostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -81,20 +81,24 @@ class PostController extends Controller
             if (!(Tag::where('name', $value)->exists())) {
                 $tagid[] = DB::table('tags')->insertGetId(['name' => $value,]);
             } else {
-                $tagid[] = Tag::where('name', $value)->pluck('id')->first();
+                $tagid[] = DB::table('tags')->where('name', $value)->pluck('id')->first();
             }
         }
 
         info($tagid);
 
-        $post->tags()->attach($tagid);
+        foreach ($tagid as $value) {
+            DB::table('post_tag')->updateOrInsert(['post_id' => $post->id, 'tag_id' => $value]);
+       }
+
+        // $post->tags()->attach($tagid);
 
         return redirect('/home');
     }
 
     public function edit($id)
     {
-        $post = Post::where('id', $id)->first();
+        $post = DB::table('posts')->where('id', $id)->first();
 
         return view('post.editpost')->with('post', $post);
     }
@@ -102,10 +106,13 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
+        $alltags=DB::table('tags')->join('post_tag', 'tags.id', '=', 'post_tag.tag_id')->where('post_tag.post_id',$id)->get(); 
         $tags=[];
-        foreach ($post->tags as $tag) {
+        foreach($alltags as $tag){
             $tags[] = $tag->name;
         }
+
+
         return view('post.view')->with(['post' => $post, 'tags' => $tags]);
     }
 
@@ -119,15 +126,23 @@ class PostController extends Controller
         $tags = explode(",", $request->tags);
 
         foreach ($tags as $value) {
-            if (!(Tag::where('name', $value)->exists())) {
+            if (!(DB::table('tags')->where('name', $value)->exists())) {
                 $tagid[] = DB::table('tags')->insertGetId(['name' => $value,]);
             } else {
-                $tagid[] = Tag::where('name', $value)->pluck('id')->first();
+                $tagid[] = DB::table('tags')->where('name', $value)->pluck('id')->first();
             }
         }
 
-        $post = Post::find($id);
-        $post->tags()->sync($tagid);
+        $post = DB::table('posts')->find($id);
+        // $post->tags()->sync($tagid);
+        $exist_tag=DB::table('post_tag')->where('post_id', $id)->pluck('tag_id')->toArray();    
+        $difference=array_diff($exist_tag,$tagid);
+        foreach ($difference as $value) {
+            DB::table('post_tag')->where([['post_id', $post->id],['tag_id', $value]])->delete();
+        }
+       foreach ($tagid as $value) {
+            DB::table('post_tag')->updateOrInsert(['post_id' => $post->id, 'tag_id' => $value]);
+       }
 
         return response()->json([
             'response' => 'success', 'title' => $request->title, 'description' => $request->description]);
@@ -135,7 +150,7 @@ class PostController extends Controller
 
     public function destroy($id)
     {
-        Post::where('id', $id)->delete();
+        DB::table('posts')->where('id', $id)->delete();
         return redirect('/home');
     }
 
@@ -144,7 +159,6 @@ class PostController extends Controller
     public function allPosts()
     {
 
-        info('allPosts executed ');
         $posts = Post::all();
 
         return Datatables::of($posts)
