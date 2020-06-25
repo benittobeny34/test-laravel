@@ -20,17 +20,6 @@
     {{-- tag input --}}
     <script src="{{asset('js/taginput.min.js')}}"></script>
 
-
-    <style type="text/css">
-        /*view page style*/
-        .operations {
-            margin: 1rem;
-            display: none;
-        }
-
-    </style>
-
-
 </head>
 <body>
 
@@ -40,21 +29,7 @@
     Nav header start
 ***********************************-->
     <div class="nav-header">
-        <div class="brand-logo">
-            <a href="index.html">
-                <b class="logo-abbr">
-                    <img alt="" src="images/logo.png">
-                    </img>
-                </b>
-                <span class="logo-compact">
-                            <img alt="" src="./images/logo-compact.png"/>
-                        </span>
-                <span class="brand-title">
-                            <img alt="" src="images/logo-text.png">
-                            </img>
-                        </span>
-            </a>
-        </div>
+
     </div>
     <!--**********************************
     Nav header end
@@ -63,62 +38,73 @@
     Header start
 ***********************************-->
     <div class="header">
-        <div class="header-content clearfix">
-            <div class="nav-control">
-                <div class="hamburger">
-                            <span class="toggle-icon">
-                                <i class="icon-menu">
-                                </i>
-                            </span>
-                </div>
-            </div>
-            <div class="header-left">
-                <div class="input-group icons">
-                    <div class="input-group-prepend">
-                                <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1">
-                                    <i class="mdi mdi-magnify">
-                                    </i>
-                                </span>
-                    </div>
-                    <input aria-label="Search Dashboard" class="form-control" placeholder="Search Dashboard"
-                           type="search">
-                    <div class="drop-down animated flipInX d-md-none">
-                        <form action="#">
-                            <input class="form-control" placeholder="Search" type="text">
-                            </input>
-                        </form>
-                    </div>
-                    </input>
-                </div>
-            </div>
-            <div class="header-right">
-                <ul class="clearfix">
-                    @if(Auth::check())
-                        <li>
-                            <a href="{{ route('logout') }}"
-                               onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url('/home') }}">
+                    {{ __('Mallow') }}
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false"
+                        aria-label="{{ __('Toggle navigation') }}">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="navbar-nav mr-auto">
+
+                    </ul>
+
+                    <!-- Right Side Of Navbar -->
+                    <ul class="navbar-nav ml-auto">
+                        <!-- Authentication Links -->
+                        @guest
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('User Login') }}</a>
+
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/admin') }}">{{ __('Admin Login') }}</a>
+                            </li>
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url('/admin') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif
+                        @else
+                            <li class="nav-item dropdown">
+
+                                @role('admin')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/admin') }}">{{ __('Home') }}</a>
+                            </li>
+                            @endrole
+
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
-                        </li>
 
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                        >
-                            @csrf
-                        </form>
-                    @else
-                        <li class="icons dropdown">
-                            <a href="{{ route('login') }}">{{ __('Login') }}</a>
-                        </li>
-                        <li class="icons dropdown">
-                            <a href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
 
-                        </li>
-                    @endif
-
-                </ul>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                      style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                            </li>
+                        @endguest
+                    </ul>
+                </div>
             </div>
-        </div>
+        </nav>
+
     </div>
     <hr>
     <!--**********************************
@@ -159,11 +145,13 @@
                                 </span>
                     </a>
                     <ul aria-expanded="false">
-                        <li>
-                            <a href="{{route('addpost')}}">
-                                Create Post
-                            </a>
-                        </li>
+                        @can('create')
+                            <li>
+                                <a href="{{route('addpost')}}">
+                                    Create Post
+                                </a>
+                            </li>
+                        @endcan
                         <li>
                             <a href="{{route('home.index')}}">
                                 view All Posts
@@ -245,3 +233,4 @@ Main wrapper end
 <script src="{{ asset('js/dashboard/dashboard-1.js') }}"></script>
 
 </html>
+

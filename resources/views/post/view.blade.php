@@ -17,23 +17,24 @@
         <h5>{{$post->created_at->diffForHumans()}}</h5>
         <div id="post-description" class="jumbotron">
             {{$post->description}}
-
-            <table>
-                <tr>
-                    <td>
-                        <button class="btn btn-primary operations" data-toggle="modal"
-                                data-target="#exampleModal-{{$post->id}}">Edit
-                        </button>
-                    </td>
-                    <td>
-                        <form method="post" action={{route('home.destroy',$post->id)}}>
-                            @csrf
-                            {{ method_field('DELETE') }}
-                            <button class="btn btn-danger operations" type="submit">Discard</button>
-                        </form>
-                    </td>
-                </tr>
-            </table>
+            @can('edit')
+                <table>
+                    <tr>
+                        <td>
+                            <button class="btn btn-primary" data-toggle="modal"
+                                    data-target="#exampleModal-{{$post->id}}">Edit
+                            </button>
+                        </td>
+                        <td>
+                            <form method="post" action={{route('home.destroy',$post->id)}}>
+                                @csrf
+                                {{ method_field('DELETE') }}
+                                <button class="btn btn-danger" type="submit">Discard</button>
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+            @endcan
         </div>
     </div>
     <label>Tags:</label>
@@ -88,16 +89,18 @@
     </div>
 
     <hr>
-    <h4><em>Add Comment</em></h4>
-    <form id="comment-form" method="post" action="{{route('comment',$post->id)}}">
-        @csrf
-        <div class="form-group">
+    @can('edit')
+        <h4><em>Add Comment</em></h4>
+        <form id="comment-form" method="post" action="{{route('comment',$post->id)}}">
+            @csrf
+            <div class="form-group">
             <textarea class="form-control h-150px @error('comment') is-invalid @enderror" rows="6"
                       placeholder="Add comment ....." name="comment" id="comment"></textarea>
-        </div>
-        <button type="submit" class="btn btn-dark">Add</button>
-    </form>
-    <hr>
+            </div>
+            <button type="submit" class="btn btn-dark">Add</button>
+        </form>
+        <hr>
+    @endcan
 
     <div class="sample">
         <form id="get-comments" method="GET" action="{{route('view-comments',$post->id)}}">

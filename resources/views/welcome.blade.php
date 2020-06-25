@@ -70,7 +70,9 @@
             @auth
                 <a href="{{ url('/home') }}">Home</a>
             @else
-                <a href="{{ route('login') }}">Login</a>
+                <a href="{{url('/admin') }}">Admin Login</a>
+
+                <a href="{{ route('login') }}">User Login</a>
 
                 @if (Route::has('register'))
                     <a href="{{ route('register') }}">Register</a>
@@ -81,7 +83,7 @@
 
     <div class="content">
         <div class="title m-b-md">
-            Laravel
+            Welcome to the Blog
         </div>
 
         <div class="links">

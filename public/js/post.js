@@ -163,11 +163,6 @@ $(document).ready(function () {
         })
     });
 
-    $('.jumbotron').hover(() => {
-        $('.operations').css('display', 'block');
-    }, () => {
-        $('.operations').css('display', 'none');
-    })
 
 
     // task 16 Tagging
