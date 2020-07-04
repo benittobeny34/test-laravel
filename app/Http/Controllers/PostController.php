@@ -164,5 +164,13 @@ class PostController extends Controller
             })->make(true);
     }
 
+    public function tagPosts($id)
+    {
+        # code...
+        return view('post.tagpost')->with('posts',Tag::find($id)->posts);
+    }
+
+
+
 
 }

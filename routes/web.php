@@ -55,6 +55,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('comments/{id}/{post_id}/update', 'CommentController@update')->name('comments.update');
 
+    Route::get('tagposts/{id}','PostController@tagPosts');
+
 
     // more route definitions
 
