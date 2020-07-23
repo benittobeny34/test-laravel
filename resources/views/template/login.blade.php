@@ -1,6 +1,20 @@
 
-    @extends('template.index')
-    @section('content')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    <script src="{{asset('js/jquery.min.js')}}"></script>
+    <link rel="stylesheet" type="text/css" href="{{asset('css/templateStyle.css')}}">
+        {{-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"> --}}
+     
+     <link rel="stylesheet" href="{{asset('datatable/dataTables.min.css')}}">
+     <script src="{{asset('datatable/dataTables.min.js')}}" defer></script>
+
+ 
+</head>
+<body>
+
     <div class="login-form-bg h-100">
         <div class="container h-100">
             <div class="row justify-content-center h-100">
@@ -43,4 +57,5 @@
             </div>
         </div>
     </div>
-    @endsection
+   </body>
+   </html>
