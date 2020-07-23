@@ -102,11 +102,8 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
-        $tags=[];
-        foreach ($post->tags as $tag) {
-            $tags[] = $tag->name;
-        }
-        return view('post.view')->with(['post' => $post, 'tags' => $tags]);
+       
+        return view('post.view')->with(['post' => $post, 'post_tags' => $post->tags]);
     }
 
     public function update(PostValidation $request, $id)
@@ -135,7 +132,9 @@ class PostController extends Controller
 
     public function destroy($id)
     {
-        Post::where('id', $id)->delete();
+        $post = Post::find($id);
+        $post->comments()->delete();
+        $post->delete();
         return redirect('/home');
     }
 

@@ -28,6 +28,7 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+     
         View::composer('*', function ($view) {
             $view->with('tags', Cache::remember('posts', 5 * 60/* cache expired time(mins) */, function () {
                 return Tag::all(['id', 'name']);

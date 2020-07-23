@@ -1,0 +1,275 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+body{
+    height:100%;
+    width: 100%;
+}
+
+.navbox{
+    width: 100%;
+    height:10vh;
+    display: flex;
+    flex-direction: row;
+    position:fixed;
+    z-index:1;
+
+}
+.navbox .navlogo{
+    width:17%;
+    background-color: #404040;
+    height: 10vh;
+    text-align: center;
+    text-transform: uppercase;
+    padding-top: 3.5vh;
+    color:white;
+}
+
+.content{
+    position:relative;
+    top:10vh;
+}
+.sidebar-left,.sidebar-right{
+  width: 15%;
+  height:90vh;
+  background-color: dimgray; 
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 0.05rem;
+  font-size:0.75rem;
+  margin:0px;
+  overflow:auto;
+}
+.sidebar-left{
+    position: fixed;
+    left:0px;
+    top:0px;
+}
+
+.dashboard{
+    position: relative;
+    height:6vh;
+    background-color: red;
+    text-transform: uppercase;
+    display: block;
+    text-align: center;
+    color:white;
+    padding-top:2vh;
+}
+
+ .navbox .navdiv {
+    color:white;
+    height:10vh;
+    width:85%;
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-end;
+    align-items: center;
+    list-style-type: none;
+    text-decoration:none;
+    background-color: darkslategray;
+}
+
+.nav-links, .nav-links:hover,.link-header .links li a:hover{
+    color: rgb(238, 195, 195);
+    text-decoration: none;
+    margin:0.5rem;
+}
+
+
+.search{ 
+    position: relative;
+    height:6vh;
+    width: 20%;
+    border:1px solid #fff;
+    background-color: #fff;
+}
+
+.search input{
+    height: 6vh;
+    width:100%;
+}
+.link-header{
+    position: relative;
+    text-transform: uppercase;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    border-bottom: 1px solid dimgray;
+}
+
+.link-title{
+   height:6vh;
+   width: 100%;
+   padding-top:2vh;
+   background-color: #464a53;
+   text-align: center;
+}
+
+.link-title .arrow{
+    position: absolute;
+    right:7px;
+}
+
+.link-header .links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    background-color: whitesmoke;
+    color:black;
+    width:100%;
+    display: none;
+}
+
+.link-header .link-title:hover{
+    color:blue;
+    cursor:pointer;
+}
+.link-header .links li:hover{
+    background-color: dimgray;
+    color: white;
+    cursor: pointer;
+}
+
+.link-header .links li{
+    list-style-type: none;
+    height:6vh;
+    background-color: transparent;
+    text-align: center;
+    padding-top:2vh;
+}
+
+
+
+.main-content{    /*this is for posts if main contents having posts */
+    width:100%;
+    height:90vh;
+}
+
+
+ .main-content .posts,#users-table{
+    width:95%;
+    margin:.5rem auto;
+    padding:0.5rem;
+
+}
+
+ .main-content .posts li{  
+    display:flex;
+    flex-direction: column;
+    width:100%;
+    background-color: dimgray;
+    list-style-type: none;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-bottom: 3%;
+    padding:1% 1%;
+} 
+
+.main-content .posts .post-title span, .timestamp{
+    font-size: 14px;
+    color:blueviolet;
+} 
+.main-content .pagination{
+  margin-left: 30%;
+}
+
+
+
+/*
+view blade.php file style
+*/
+
+.label .label-info{
+    background-color: black;
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+}
+@media screen and (max-width:414px)
+{
+    .content{
+        position:relative;
+       top:0px;
+    }
+  .navbox{
+      display:flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      height: fit-content;
+  }
+  .navbox .navdiv{
+      display:flex;
+      flex-direction: column;
+      width:100%;
+      justify-content: center;
+      align-items: center;
+      height: fit-content;
+      background-color:#464a53;
+      display:none;
+  }
+  .navbox  .navlogo{
+      width:100%;
+      position: relative;
+  }
+  .navbox .navdiv .nav-items{
+      height:8vh;
+      padding:.5rem 0;
+      background-color: dimgray;
+      width:100%;
+  }
+  .navdiv .nav-items .nav-links{
+       padding:.5rem auto;
+  }
+  .line {
+    width: 30px;
+    height: 3px;
+    background: red;
+    margin: 5px;
+}
+ .navlogo .logo-name{
+     width:80%;
+ }
+
+  .hamburger{
+    width:20%;
+    position: absolute;
+    cursor: pointer;
+    top:50%;
+    right:.5rem;
+    transform: translate(-5%,-50%);
+    z-index: 2;
+ }
+ .search{
+    position: relative;
+    height:6vh;
+    width: 80%;
+    border:1px solid #fff;
+    background-color: dimgray;
+    margin-left:10%;
+ }
+  .main-content {  
+    width:100%;
+    margin:0 auto;
+    height: auto;
+    background-color: gainsboro;
+    overflow:auto;
+} 
+
+.sidebar-left,.sidebar-right{
+  height: auto;
+}
+
+
+
+.main-content .pagination{
+  margin-left: 10%;
+}
+
+}

@@ -1,63 +1,113 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog-Mallow</title>
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
 
-    <title>Laravel</title>
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-    <!-- Styles -->
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+           
+    <link rel="stylesheet" href="{{asset('datatable/dataTables.min.css')}}">
+    <script src="{{asset('datatable/dataTables.min.js')}}" defer></script>
+        <script src="{{asset('js/jquery.min.js')}}"></script>
 </head>
+
 <body>
-@include('navbar_nonuser')
- <div class="row">
-    <div class="content offset-md-3 col-md-6">
-       
-                    @foreach($posts as $post)
-                    <div class="col-12">
-                        <div class="card">      
-                            <div class="card-body">
-                                <h3>{{$post->title}}</h3>
-                                <p>{{substr($post->description,0,50)}}...</p>
-                            </div>
-                        </div>
-                    </div>
+    <div class="navbox">
+        <div class="navlogo">
+            <div class="logo-name"><img src="{{asset('mallow_icon.jpeg')}}" width="30px" height="30px">Mallow</div>
+            <div class="hamburger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="navdiv">
+            <li class="nav-items">
+                <a class="nav-links" href="{{route('login')}}">login</a>
+            </li>
+
+            <li class="nav-items">
+                <a class="nav-links" href="{{route('register')}}">Register</a>
+            </li>
+            <form class="search">
+                <input class="" type="search" placeholder="Search" aria-label="Search">
+            </form>
+        </div>
+    </div>
+    <div class="row no-gutters content">
+        <div class="col-md-2 col-lg-2 col-xs-12 sidebar-left">
+            @auth
+            <div class="dashboard">
+                <span>DASHBOARD</span>
+            </div>
+            <div class="link-header">
+                <div class="link-title">Post Option <span class="arrow">&rarr;</span></div>
+                <div class="links">
+                    <li>Create post</li>
+                    <li>View Post</li>
+                    <li>Recent Posts</li>
+                    <li>Top 5 Posts</li>
+                </div>
+            </div>
+            <div class="link-header">
+                <div class="link-title">Top Tags<span class="arrow">&rarr;</span></div>
+                <div class="links">
+                    <li>General</li>
+                    <li>knowledge</li>
+                    <li>Tech</li>
+                    <li>Programming</li>
+                </div>
+            </div>
+            <div class="link-header">
+                <div class="link-title">Activity <span class="arrow">&rarr;</span></div>
+                <div class="links">
+                    <li>Your posts</li>
+                    <li>Your Comments</li>
+                </div>
+            </div>
+         @endauth
+
+            
+        </div>
+        <div class="col-md-8 col-lg-8 col-xs-12 main-content">
+            <div class="posts">
+                @foreach($posts as $post)
+                  <li>
+                      <div class="post-title">{{$post->title}} <span>{{$post->created_at}}</span> </div>
+                      <div class="post-description">{{substr($post->description,0,60)}}...</div>
+                  </li>
+                @endforeach
+            </div>
+           <div class="pagination">
+                {{$posts->links()}}
+           </div>
+            
+        </div>
+        <div class="col-md-2 col-lg-2 col-xs-12 sidebar-right">
+            <div class="link-header">
+                <div class="link-title">Top 5 tags <span class="arrow">&rarr;</span></div>
+                <div class="links">
+                    <li>Python</li>
+                    <li>java</li>
+                    <li>PHP</li>
+                </div>
+            </div>
+            <div class="link-header">
+                <div class="link-title">Recent Posts <span class="arrow">&rarr;</span></div>
+                <div class="links">
+                    @foreach($latestposts as $post)
+                    <li>{{$post->title}}</li>
                     @endforeach
                 </div>
-            <div class='col-md-3'>
-               <h4>Recent 5 Posts</h4>
-               <ol>
-                @foreach($latestposts as $latest)
-                 <li><a href="#">{{$latest->title}}</a>
-                  <h6>{{$latest->created_at}}</h6></li>
-                @endforeach
-               </ol>
-               <hr>
-               <h4>Top 5 Tags</h4>
-               
-               <hr>
             </div>
-    </div>
-    <div class="row">
-            <div class="offset-md-4" style="padding:2rem;">
-                {{$posts->links()}}
-            </div>
-    </div>
-          
-
-
+            
+        </div>
 </body>
+
+<script src="{{asset('js/app.js')}}"></script>
+
 </html>

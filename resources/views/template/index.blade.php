@@ -1,81 +1,55 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog</title>
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
 
-    <link rel="stylesheet" type="text/css" href="{{asset('css/taginput.min.css')}}">
-
-    <script src="{{asset('js/jquery.min.js')}}"></script>
-    <link rel="stylesheet" type="text/css" href="{{asset('css/templateStyle.css')}}">
-
-    {{-- datatable --}}
+    {{-- <link rel="stylesheet" type="text/css" href="{{asset('css/templateStyle.css')}}"> --}}
+  <script src="{{asset('js/jquery.min.js')}}"></script>
+   
     <link rel="stylesheet" href="{{asset('datatable/dataTables.min.css')}}">
     <script src="{{asset('datatable/dataTables.min.js')}}" defer></script>
 
-    <script src="{{asset('js/post.js')}}"></script>
-    {{-- toastr --}}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+     <script src="{{asset('js/post.js')}}"></script>
+   
     <script src="{{asset('plugins/toastr/js/toastr.min.js')}}"></script>
     <link rel="stylesheet" type="text/css" href="{{asset('plugins/toastr/css/toastr.min.css')}}">
-    {{-- tag input --}}
+  
     <script src="{{asset('js/taginput.min.js')}}"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="{{asset('css/taginput.min.css')}}">
+   <script src="{{asset('js/taginput.min.js')}}"></script>
 </head>
 <body>
+     <div class="navbox">
+        <div class="navlogo">
+            <div class="logo-name"><img src="{{asset('mallow_icon.jpeg')}}" width="30px" height="30px">Mallow</div>
+            <div class="hamburger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="navdiv">
+            @guest
+            <li class="nav-items">
+                <a class="nav-links" href="{{route('login')}}">login</a>
+            </li>
 
+            <li class="nav-items">
+                <a class="nav-links" href="{{route('register')}}">Register</a>
+            </li>
+            @else
+               <li class="nav-item dropdown">
 
-<div id="main-wrapper">
-    <!--**********************************
-    Nav header start
-***********************************-->
-    <div class="nav-header">
-
-    </div>
-    <!--**********************************
-    Nav header end
-***********************************-->
-    <!--**********************************
-    Header start
-***********************************-->
-    <div class="header">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/home') }}">
-                    {{ __('Mallow') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                        data-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent" aria-expanded="false"
-                        aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('User Login') }}</a>
-
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/admin') }}">{{ __('Admin Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('/admin') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-
-                                @role('admin')
+                             @role('admin')
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/admin') }}">{{ __('Home') }}</a>
                             </li>
@@ -99,66 +73,25 @@
                                 </form>
                             </div>
                             </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
+           @endguest
 
-    </div>
-    <hr>
-    <!--**********************************
-    Header end ti-comment-alt
-***********************************-->
-    <!--**********************************
-    Sidebar start
-***********************************-->
-          @include('template.sidebar')
-    <!--**********************************
-    Sidebar end
-***********************************-->
-    <!--**********************************
-    Content body start
-***********************************-->
-    <div class="content-body">
-        <div class="container-fluid mt-3">
-            @yield('content')
+            <form class="search">
+                <input class="" type="search" placeholder="Search" aria-label="Search">
+            </form>
         </div>
     </div>
-    <!--**********************************
-    Content body end
-***********************************-->
-    <!--**********************************
-    Footer start
-***********************************-->
-    <div class="footer">
-        <div class="copyright">
-            <p>
-                Copyright © Designed & Developed by
-                <a href="https://themeforest.net/user/quixlab">
-                    Quixlab
-                </a>
-                2018
-            </p>
+    <div class="row no-gutters content">
+       <div class="col-md-2 col-lg-2 col-xs-12 sidebar-left">
+            @include('template.leftsidebar')
+        </div>
+        <div class="col-md-8 col-lg-8 col-xs-12 main-content">
+              @yield('content')
+        </div>
+        <div class="col-md-2 col-lg-2 col-xs-12 sidebar-right">
+         
         </div>
     </div>
-    <!--**********************************
-    Footer end
-***********************************-->
-</div>
-<!--**********************************
-Main wrapper end
-***********************************-->
-
 
 </body>
-<script src="{{asset('plugins/common/common.min.js')}}"></script>
-<script src="{{asset('js/custom.min.js')}}"></script>
-<script src="{{asset('js/settings.js')}}"></script>
-<script src="{{asset('js/gleek.js')}}"></script>
-<script src="{{asset('js/styleSwitcher.js')}}"></script>
-
-<script src="{{ asset('js/dashboard/dashboard-1.js') }}"></script>
-
+<script src="{{asset('js/app.js')}}"></script>
 </html>
-

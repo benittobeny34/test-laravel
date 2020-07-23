@@ -165,7 +165,8 @@ $(document).ready(function () {
 
 
 
-    // task 16 Tagging
+    // // datatable
+    // $('#users-table').DataTable({});
 
 
 });

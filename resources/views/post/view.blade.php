@@ -2,7 +2,10 @@
 
 @section('content')
 
-    @if (session()->has('message'))
+    
+
+    <div class="container">
+        @if (session()->has('message'))
 
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>{{session()->get('message')}}</strong> .
@@ -12,9 +15,8 @@
         </div>
     @endif
 
-    <div class="container">
-        <h1 id="post-title">{{$post->title}}</h1>
-        <h5>{{$post->created_at->diffForHumans()}}</h5>
+        <h1 id="post-title">{{$post->title}}<small class='timestamp'>{{$post->created_at}}</small></h1>
+        
         <div id="post-description" class="jumbotron">
             {{$post->description}}
             @can('edit')
@@ -36,12 +38,12 @@
                 </table>
             @endcan
         </div>
-    </div>
-    <label>Tags:</label>
-    @foreach($tags as $tag)
-        <span class="label label-info">{{$tag}}</span>
-    @endforeach
 
+    <label>Tags:</label>
+    @foreach($post_tags as $tag)
+        <span class="label label-info">
+            <a href="/tag/{{$tag->id}}">{{$tag->name}}</a></span>
+    @endforeach
 
 
     <div class="modal fade" id="exampleModal-{{$post->id}}" tabindex="-1" role="dialog"
@@ -74,7 +76,7 @@
                         <div class="form-group">
                             <label for="description" class="col-form-label">Tags:</label>
                             <input name="tags" id="input-tags" class="form-control input-flat"
-                                   value="@foreach($tags as $tag){{$tag}},@endforeach">
+                                   value="@foreach($post_tags as $tag){{$tag->name}},@endforeach">
                             <span id="tag-error" class="text-danger"></span>
 
                         </div>
@@ -109,6 +111,7 @@
         </form>
     </div>
 
+ </div>
 
     <script type="text/javascript">
         $('#input-tags').tagsInput();
