@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use App\Tag;
 
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -16,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-       //
+       
     }
 
     /**

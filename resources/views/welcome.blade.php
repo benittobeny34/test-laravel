@@ -10,93 +10,54 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
     <!-- Styles -->
-    <style>
-        html, body {
-            background-color: #fff;
-            color: #636b6f;
-            font-family: 'Nunito', sans-serif;
-            font-weight: 200;
-            height: 100vh;
-            margin: 0;
-        }
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-        .full-height {
-            height: 100vh;
-        }
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
-        .flex-center {
-            align-items: center;
-            display: flex;
-            justify-content: center;
-        }
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
-        .position-ref {
-            position: relative;
-        }
 
-        .top-right {
-            position: absolute;
-            right: 10px;
-            top: 18px;
-        }
-
-        .content {
-            text-align: center;
-        }
-
-        .title {
-            font-size: 84px;
-        }
-
-        .links > a {
-            color: #636b6f;
-            padding: 0 25px;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: .1rem;
-            text-decoration: none;
-            text-transform: uppercase;
-        }
-
-        .m-b-md {
-            margin-bottom: 30px;
-        }
-    </style>
 </head>
 <body>
-<div class="flex-center position-ref full-height">
-    @if (Route::has('login'))
-        <div class="top-right links">
-            @auth
-                <a href="{{ url('/home') }}">Home</a>
-            @else
-                <a href="{{url('/admin') }}">Admin Login</a>
-
-                <a href="{{ route('login') }}">User Login</a>
-
-                @if (Route::has('register'))
-                    <a href="{{ route('register') }}">Register</a>
-                @endif
-            @endauth
-        </div>
-    @endif
-
-    <div class="content">
-        <div class="title m-b-md">
-            Welcome to the Blog
-        </div>
-
-        <div class="links">
-            <a href="https://laravel.com/docs">Docs</a>
-            <a href="https://laracasts.com">Laracasts</a>
-            <a href="https://laravel-news.com">News</a>
-            <a href="https://blog.laravel.com">Blog</a>
-            <a href="https://nova.laravel.com">Nova</a>
-            <a href="https://forge.laravel.com">Forge</a>
-            <a href="https://vapor.laravel.com">Vapor</a>
-            <a href="https://github.com/laravel/laravel">GitHub</a>
-        </div>
+@include('navbar_nonuser')
+ <div class="row">
+    <div class="content offset-md-3 col-md-6">
+       
+                    @foreach($posts as $post)
+                    <div class="col-12">
+                        <div class="card">      
+                            <div class="card-body">
+                                <h3>{{$post->title}}</h3>
+                                <p>{{substr($post->description,0,50)}}...</p>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            <div class='col-md-3'>
+               <h4>Recent 5 Posts</h4>
+               <ol>
+                @foreach($latestposts as $latest)
+                 <li><a href="#">{{$latest->title}}</a>
+                  <h6>{{$latest->created_at}}</h6></li>
+                @endforeach
+               </ol>
+               <hr>
+               <h4>Top 5 Tags</h4>
+               
+               <hr>
+            </div>
     </div>
-</div>
+    <div class="row">
+            <div class="offset-md-4" style="padding:2rem;">
+                {{$posts->links()}}
+            </div>
+    </div>
+          
+
+
 </body>
 </html>

@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\View;
-use Illuminate\Support\ServiceProvider;
+use App\Post;
 use App\Tag;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\ServiceProvider;
+use DB;
 
 class ViewServiceProvider extends ServiceProvider
 {
@@ -16,11 +18,7 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function register()
     {
-         View::composer('*', function ($view) {
-            $view->with('tags', Cache::remember('posts', 5*60 /* cache expired time(mins) */, function() {
-                 return Tag::all(['id','name']);
-            }));
-        });
+
     }
 
     /**
@@ -30,6 +28,15 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-       
+        View::composer('*', function ($view) {
+            $view->with('tags', Cache::remember('posts', 5 * 60/* cache expired time(mins) */, function () {
+                return Tag::all(['id', 'name']);
+            }));
+        });
+
+        $latestposts = Post::orderBy('created_at', 'desc')->take(5)->get();
+
+
+        View::share(['latestposts'=>$latestposts]);
     }
 }

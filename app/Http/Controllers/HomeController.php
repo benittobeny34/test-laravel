@@ -17,7 +17,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        
     }
 
     /**
@@ -27,10 +27,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $posts = Post::orderBy('created_at','desc')->paginate(5);
+        $latestFive = Post::latest(5);
 
-        $users_data = DB::table('posts')->get();
+        return view('welcome',compact('posts','latestFive'));
 
-        return view('show_details')->with("users", $users_data);
     }
 
 

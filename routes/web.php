@@ -13,11 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('show', 'HomeController@index');
+Route::get('/', 'HomeController@index'); 
+ 
 
 
 Auth::routes();
