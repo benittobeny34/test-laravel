@@ -1,0 +1,79 @@
+.sidebar-left,.sidebar-right{
+    
+    width: 15%;
+    min-height:100vh;
+    background-color:   rgb(240, 245, 243); 
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 0.05rem;
+    font-size:0.75rem;
+    margin:0px;
+    overflow:auto;
+  }
+
+
+  
+  .dashboard{
+      position: relative;
+      height:6vh;
+      background-color: rgb(199, 179, 179);
+      text-transform: uppercase;
+      display: block;
+      text-align: center;
+      color:white;
+      padding-top:2vh;
+  }
+
+  .link-header{
+    position: relative;
+    text-transform: uppercase;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    border-bottom: 1px solid dimgray;
+}
+
+.link-title{
+   height:6vh;
+   width: 100%;
+   padding-top:2vh;
+   background-color: #464a53;
+   text-align: center;
+}
+
+.link-title .arrow{
+    position: absolute;
+    right:7px;
+}
+
+.link-header .links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    background-color: whitesmoke;
+    color:black;
+    width:100%;
+    display: none;
+}
+
+.link-header .link-title:hover{
+    color:blue;
+    cursor:pointer;
+}
+.link-header .links li:hover{
+    background-color: dimgray;
+    color: white;
+    cursor: pointer;
+}
+
+.link-header .links li{
+    list-style-type: none;
+    height:6vh;
+    background-color: transparent;
+    text-align: center;
+    padding-top:2vh;
+}
+
+

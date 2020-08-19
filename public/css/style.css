@@ -2,6 +2,9 @@
     margin:0;
     padding:0;
 }
+h1,h2,h3,h4,h5,h6{
+  text-align:center;
+}
 
 body{
     height:100%;
@@ -33,8 +36,8 @@ body{
 }
 .sidebar-left,.sidebar-right{
   width: 15%;
-  height:90vh;
-  background-color: dimgray; 
+  min-height:100vh;
+  background-color:   rgb(255, 153, 153); 
   font-family: Arial, Helvetica, sans-serif;
   letter-spacing: 0.05rem;
   font-size:0.75rem;
@@ -68,7 +71,7 @@ body{
     align-items: center;
     list-style-type: none;
     text-decoration:none;
-    background-color: darkslategray;
+    background-color:   rgb(255, 77, 77);
 }
 
 .nav-links, .nav-links:hover,.link-header .links li a:hover{
@@ -147,7 +150,7 @@ body{
 
 .main-content{    /*this is for posts if main contents having posts */
     width:100%;
-    height:90vh;
+    height:100vh;
 }
 
 
@@ -189,6 +192,19 @@ view blade.php file style
     border-radius: 5px;
     text-align: center;
     color: white;
+}
+
+.search-results{
+   display: none;
+   background-color:dimgray;
+   transition: 3s ease;
+}
+
+#close{
+  float:right;
+  z-index: 1;
+  color:blue;
+  cursor: pointer;
 }
 @media screen and (max-width:414px)
 {

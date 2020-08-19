@@ -1,16 +1,8 @@
 @extends('template.index')
 
-<style type="text/css">
-	label{
-		text-align: center;
-	}
-	main{
-		width: 100%;
-		margin:1rem auto;
-	}
-</style>
 
 @section('content') 
+    <div class='roleupdate'>
        	@if($errors->any())
 	  @foreach($errors->all() as $error)
          <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -62,7 +54,7 @@
                                 </div>
    </form>
    	
-
+ </div>
 @endsection
 
 

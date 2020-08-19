@@ -1,69 +1,31 @@
 
-@auth
-<div class="dashboard">
-    <span>
-        <a href="{{route('home.index')}}">
-            Dashboard
-        </a>
-    </span>
+<div class="col-md-2 col-lg-2 col-xs-12 sidebar-left">
+    @auth
+            <div class="dashboard">
+                <span>DASHBOARD</span>
+            </div>
+            <div class="link-header">
+                <div class="link-title">Post Option <span class="arrow">&rarr;</span></div>
+                <div class="links">
+                    <a href="{{route('addpost')}}"><li>Create post</li></a>
+                   <a href="{{url('/home')}}"> <li>View All Post</li></a>
+                    
+                </div>
+            </div>
+            <div class="link-header">
+                <div class="link-title">Top Tags<span class="arrow">&rarr;</span></div>
+                <div class="links">
+                    @foreach($tags as $tag)
+                       <a href="{{route('tagposts',[$tag->id])}}"><li>{{$tag->name}}</li></a>
+                    @endforeach
+                </div>
+            </div>
+            <div class="link-header">
+                <div class="link-title">Activity <span class="arrow">&rarr;</span></div>
+                <div class="links">
+                  <a href="{{route('your-posts')}}"> <li>View Your Post</li></a>
+                    <a href="#" disabled><li>Your Comments</li></a>
+                </div>
+            </div> 
+        @endauth          
 </div>
-<div class="link-header">
-    <div class="link-title">
-        Post Option
-        <span class="arrow">
-            →
-        </span>
-    </div>
-    <div class="links">
-        @can('create')
-        <li>
-            <a href="{{route('addpost')}}">
-                Create Post
-            </a>
-        </li>
-        @endcan
-        <li>
-            <a href="{{route('home.index')}}">
-                view All Posts
-            </a>
-        </li>
-    </div>
-</div>
-<div class="link-header">
-    <div class="link-title">
-        All Tags
-        <span class="arrow">
-            →
-        </span>
-    </div>
-    <div class="links">
-        @foreach($tags as $tag)
-        <li>
-            <a href="/tagposts/{{$tag->id}}">
-                {{$tag->name}}
-            </a>
-        </li>
-        @endforeach
-    </div>
-</div>
-<div class="link-header">
-    <div class="link-title">
-        Activity
-        <span class="arrow">
-            →
-        </span>
-    </div>
-    <div class="links">
-        <li>
-        <a href="{{route('your-posts')}}">
-            Your Posts
-        </a>
-        </li>
-        <li>
-            <a href="#">
-                Your Comments
-            </a>
-        </li>
-    </div>
-</div>
-@endauth

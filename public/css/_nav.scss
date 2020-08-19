@@ -1,0 +1,56 @@
+
+
+.navbox{
+    width: 100%;
+    height:10vh;
+    display: flex;
+    flex-direction: row;
+    position:fixed;
+    z-index:1;
+
+}
+.navbox .navlogo{
+    width:17%;
+    background-color:rgb(208, 245, 229);
+    height: 10vh;
+    text-align: center;
+    text-transform: uppercase;
+    padding-top: 3.5vh;
+    color:white;
+}
+
+
+
+.navbox .navdiv {
+    color:white;
+    height:10vh;
+    width:85%;
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-end;
+    align-items: center;
+    list-style-type: none;
+    text-decoration:none;
+    background-color:   rgb(240, 245, 243);
+}
+
+
+.nav-links, .nav-links:hover,.link-header .links li a:hover{
+    color: rgb(238, 195, 195);
+    text-decoration: none;
+    margin:0.5rem;
+}
+
+
+.search{ 
+    position: relative;
+    height:6vh;
+    width: 20%;
+    border:1px solid #fff;
+    background-color: #fff;
+}
+
+.search input{
+    height: 6vh;
+    width:100%;
+}

@@ -11,6 +11,6 @@ $factory->define(App\Post::class, function (Faker $faker) {
         'email' => $faker->unique()->safeEmail,
         'title' => $faker->word,
         'description' => $faker->text,
-        'user_id' => random_int(1, 3)
+        'user_id' => random_int(1, 6)
     ];
 });

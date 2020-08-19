@@ -27,10 +27,6 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     public function index()
     {
@@ -102,6 +98,10 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
+
+        if(!$post){
+            return view('errors.402');
+        }
        
         return view('post.view')->with(['post' => $post, 'post_tags' => $post->tags]);
     }
@@ -134,6 +134,7 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $post->comments()->delete();
+        $post->tags()->delete();
         $post->delete();
         return redirect('/home');
     }

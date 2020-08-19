@@ -81,9 +81,9 @@ class CommentController extends Controller
 
         foreach ($comments as $comment) {
 
-            $user = User::where('id', $comment->commented_by)->first();
+        $user = User::where('id', $comment->commented_by)->first();
 
-            $html .= '<div class="jumbotron">
+        $html .= '<div class="jumbotron">
         <h4>' . $user->name . '</h4>
         <p>' . $comment->comment . '</p>
         <button  class="btn btn-xs btn-primary "><a href="/comments/' . $comment->id . '/edit">Edit</a></button>

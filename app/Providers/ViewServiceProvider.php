@@ -28,10 +28,10 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-     
-        View::composer('*', function ($view) {
-            $view->with('tags', Cache::remember('posts', 5 * 60/* cache expired time(mins) */, function () {
-                return Tag::all(['id', 'name']);
+        ///* cache expired time(mins) */
+        View::composer('*', function ($view) {   
+            $view->with('tags', Cache::remember('posts', 5 * 60, function () {
+                return Tag::withCount('posts')->orderBy('posts_count','desc')->take(5)->get(); ;
             }));
         });
 
@@ -39,5 +39,6 @@ class ViewServiceProvider extends ServiceProvider
 
 
         View::share(['latestposts'=>$latestposts]);
+
     }
 }

@@ -1,0 +1,257 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+  text-align: center;
+}
+
+.navbox {
+  width: 100%;
+  height: 10vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  position: fixed;
+  z-index: 1;
+}
+
+.navbox .navlogo {
+  width: 17%;
+  background-color: #d0f5e5;
+  height: 10vh;
+  text-align: center;
+  text-transform: uppercase;
+  padding-top: 3.5vh;
+  color: white;
+}
+
+.navbox .navdiv {
+  color: white;
+  height: 10vh;
+  width: 85%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  list-style-type: none;
+  text-decoration: none;
+  background-color: #f0f5f3;
+}
+
+.nav-links, .nav-links:hover, .link-header .links li a:hover {
+  color: #eec3c3;
+  text-decoration: none;
+  margin: 0.5rem;
+}
+
+.search {
+  position: relative;
+  height: 6vh;
+  width: 20%;
+  border: 1px solid #fff;
+  background-color: #fff;
+}
+
+.search input {
+  height: 6vh;
+  width: 100%;
+}
+
+.sidebar-left, .sidebar-right {
+  width: 15%;
+  min-height: 100vh;
+  background-color: #f0f5f3;
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 0.05rem;
+  font-size: 0.75rem;
+  margin: 0px;
+  overflow: auto;
+}
+
+
+.dashboard {
+  position: relative;
+  height: 6vh;
+  background-color: #c7b3b3;
+  text-transform: uppercase;
+  display: block;
+  text-align: center;
+  color: white;
+  padding-top: 2vh;
+}
+
+.link-header {
+  position: relative;
+  text-transform: uppercase;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-bottom: 1px solid dimgray;
+}
+
+.link-title {
+  height: 6vh;
+  width: 100%;
+  padding-top: 2vh;
+  background-color: #464a53;
+  text-align: center;
+}
+
+.link-title .arrow {
+  position: absolute;
+  right: 7px;
+}
+
+.link-header .links {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: relative;
+  background-color: whitesmoke;
+  color: black;
+  width: 100%;
+  display: none;
+}
+
+.link-header .link-title:hover {
+  color: blue;
+  cursor: pointer;
+}
+
+.link-header .links li:hover {
+  background-color: dimgray;
+  color: white;
+  cursor: pointer;
+}
+
+.link-header .links li {
+  list-style-type: none;
+  height: 6vh;
+  background-color: transparent;
+  text-align: center;
+  padding-top: 2vh;
+}
+
+.content {
+  position: relative;
+  top: 10vh;
+}
+
+.main-content {
+  width: 100%;
+  height: 100vh;
+}
+
+.main-content .posts, #users-table, .roleupdate {
+  width: 95%;
+  margin: .5rem auto;
+  padding: 0.5rem;
+}
+
+.main-content .posts li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+  cursor: pointer;
+  background-color: white;
+  list-style-type: none;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  margin-bottom: 3%;
+  padding: 1% 1%;
+}
+
+.main-content .posts li:hover {
+  background-color: #d0f5e5;
+}
+
+.main-content .posts .post-title span, .timestamp {
+  font-size: 14px;
+  color: blueviolet;
+}
+
+.main-content .pagination {
+  margin-left: 30%;
+}
+
+/*
+view blade.php file style
+*/
+.label .label-info {
+  background-color: black;
+  border-radius: 5px;
+  text-align: center;
+  color: white;
+}
+
+.search-results {
+  opacity:0;
+  pointer-events: none;
+  background-color: cornsilk;
+  -webkit-transition: all 0.5s ease-in;
+  transition: all 0.5s ease-in;
+}
+
+#close {
+  float: right;
+  z-index: 1;
+  color: blue;
+  cursor: pointer;
+}
+
+
+a,a:hover,a:focus {
+  text-decoration: none !important;
+  color:black;
+}
+/*# sourceMappingURL=welcome.css.map */
+
+

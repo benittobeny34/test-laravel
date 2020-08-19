@@ -42,7 +42,7 @@
     <label>Tags:</label>
     @foreach($post_tags as $tag)
         <span class="label label-info">
-            <a href="/tag/{{$tag->id}}">{{$tag->name}}</a></span>
+            <a href="/tagposts/{{$tag->id}}">{{$tag->name}}</a></span>
     @endforeach
 
 
@@ -107,7 +107,7 @@
     <div class="sample">
         <form id="get-comments" method="GET" action="{{route('view-comments',$post->id)}}">
             @csrf
-            <button type="sumbit" class="btn btn-xs btn-primary ">View all Comments</button>
+            <button type="sumbit" class="comments-load btn btn-xs btn-primary ">View all Comments</button>
         </form>
     </div>
 

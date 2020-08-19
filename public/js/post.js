@@ -130,6 +130,8 @@ $(document).ready(function () {
 
         var form = $('#get-comments');
 
+        $('.comments-load').css({'opacity':'0.3','pointer-events':'none'});
+
         $.ajax({
 
             url: form.attr('action'),
@@ -163,10 +165,68 @@ $(document).ready(function () {
         })
     });
 
+    $('.search-results').css('transform','translateY(100%)');
+
+$('.input-search').on('change',function(){
+    console.log($('.input-search').val());
+    let search = $('.input-search').val();
+    $.ajax({
+        type:'get',
+        url:'/global-search',
+        data:{key:search},
+        success:function(data){
+
+         if(data.posts.length > 0){
+            toastr.success('your Search Results are queued here', 'Success',
+            {
+                timeOut: 2000,
+                progressBar: true,
+                positionClass: "toast-top-center",
+            })
+               let content = "<h4>Your Search Results<button id='close'>X</button></h4>";
+               content += data.posts.map(post => {
+                    return ("<a class='container text-primary m-2' href='/home/"+post.id+"'>"+post.description+"</a><hr>");
+                })
+              $('.search-results').css('transform','translateY(0%)');
+              $('.search-results').html(content);
+              $('.search-results').css({'opacity':'0.6','pointer-events':'all'});
+              $('.posts-contents').css('opacity',0);
+              $('#close').click(()=>{
+
+                $('.search-results').css({'opacity':'0','pointer-events':'none','transform':'translateY(100%)'});
+                $('.posts-contents').css('opacity',1);
+                $('.search-results').html("");
+            });
+      }
+      else{
+        toastr.warning('your Search Results are empty', 'Warning',
+            {
+                timeOut: 5000,
+                progressBar: true,
+                positionClass: "toast-top-center",
+            })
+      }
+        },
+        error:function(errors){
+
+        }
+
+    })
+})
+
+    $(".link-title").click(function () {
+        var check = $(this).next();
+
+        if (check.is(':visible')) {
+            $(this).find('span').html('&rarr;')
+        } else {
+            $(this).find('span').html('&darr;')
+        }
+        $(this).next().slideToggle(100);
+        
+    });
 
 
-    // // datatable
-    // $('#users-table').DataTable({});
 
 
 });
