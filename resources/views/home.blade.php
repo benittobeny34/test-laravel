@@ -16,12 +16,6 @@
         </thead>
     </table>
 
-   
-        <!-- jQuery -->
-
-        <!-- DataTables -->
-         
-
 <script type="text/javascript">  
   $(function() {
     $('#users-table').DataTable({
@@ -39,5 +33,7 @@
         ]
     });
 });
+
 </script>
+
 @endsection

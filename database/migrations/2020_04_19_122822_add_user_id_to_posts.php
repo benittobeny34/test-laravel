@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
+
 use Illuminate\Database\Schema\Blueprint;
+
 use Illuminate\Support\Facades\Schema;
 
 class AddUserIdToPosts extends Migration
@@ -13,9 +15,11 @@ class AddUserIdToPosts extends Migration
      */
     public function up()
     {
+
         Schema::table('posts', function (Blueprint $table) {
 
             $table->integer('user_id')->unsigned()->nullable()->after('id');
+
             $table->foreign('user_id')->references('id')->on('users');
 
         });

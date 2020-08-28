@@ -1,12 +1,16 @@
 @extends('template.index')
+
 @section('content')
+
 <div class="container">
         <h1 id="post-title">{{$post->title}}</h1>
         <h5>{{$post->created_at->diffForHumans()}}</h5>
         <div id="post-description" class="jumbotron">
             {{$post->description}}
         </div>
+
 </div>
+ 
  <table>
     <tr>
         <td><button  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal-{{$post->id}}">Edit</button>

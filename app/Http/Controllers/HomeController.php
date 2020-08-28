@@ -31,6 +31,7 @@ class HomeController extends Controller
         $users_data = DB::table('posts')->get();
 
         return view('show_details')->with("users", $users_data);
+    
     }
 
 
