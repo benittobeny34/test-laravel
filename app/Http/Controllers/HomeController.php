@@ -8,6 +8,10 @@ use App\Post;
 
 use Auth;
 
+use App\Mail\PostMail;
+
+use Mail;
+
 class HomeController extends Controller
 {
     /**
@@ -32,6 +36,30 @@ class HomeController extends Controller
 
         return view('welcome',compact('posts','latestFive'));
 
+    }
+
+
+    public function myDemoMail(){
+                $myEmail = 'brendonbeni42@gmail.com';
+
+   
+
+        $details = [
+
+            'title' => 'Post Created',
+
+            'url' => 'https://www.itsolutionstuff.com'
+
+        ];
+
+  
+
+        Mail::to($myEmail)->send(new PostMail($details));
+
+   
+
+        dd("Mail Send Successfully");
+        
     }
 
 

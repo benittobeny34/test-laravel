@@ -59,3 +59,6 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 Route::get('/global-search', 'GlobalSearch');
+
+
+Route::get('my-demo-mail','HomeController@myDemoMail');
