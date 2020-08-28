@@ -2,40 +2,30 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
+  
     return view('welcome');
+
 });
 
 Route::get('show','Postcontroller@index');
 
 Route::get('anydata','Postcontroller@anydata')->name('datatables.data');
+
 Route::get('index','Postcontroller@datatable')->name('datatable');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-// Route::get('addpost',function(){
-// 	return view('post.addpost');
-// })->middleware('auth');
+
 Route::get('addpost',function(){
-	return view('template.index');
+
+	return view('post.addpost');
+
 })->middleware('auth');
+
 Route::post('addpost','HomeController@addNewPost');
+
 Route::resource('home', 'HomeController');
 
-
-Route::get('template',function(){
-	return view('template.index');
-});

@@ -3,7 +3,9 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+
 use Illuminate\Foundation\Testing\WithFaker;
+
 use Tests\TestCase;
 
 class UserTest extends TestCase
@@ -19,31 +21,49 @@ class UserTest extends TestCase
 
         $response->assertStatus(200);
     }
-       public function testhomeTest(){
+
+
+    public function testhomeTest()
+    {
+        
         $response = $this->get('home');
 
         $response->assertStatus(302);
+    
     }
 
-    public function testShowRouteTest(){
+
+    public function testShowRouteTest()
+    {
         $response = $this->get('show');
 
         $response->assertStatus(500);
+    
     }
-    public function testaddPostTest(){
+    
+    public function testaddPostTest()
+    {
         $response = $this->post('addpost');
 
         $response->assertStatus(302);
+    
     }
 
-     public function testAnyDataRouteTest(){
+    public function testAnyDataRouteTest()
+     {
         $response = $this->get('show');
 
         $response->assertStatus(500);
+    
     }
-    public function testIndexTest(){
+    
+    public function testIndexTest()
+    {
         $response = $this->post('index');
 
         $response->assertStatus(302);
+    
     }
+
+    
 }
