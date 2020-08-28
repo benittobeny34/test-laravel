@@ -1,9 +1,11 @@
 <?php
 
 use App\Post;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/check', function () {
+   
     return Post::withCount('comments')->orderBy('comments_count', 'desc')->take(10)->get();
 });
 
@@ -11,14 +13,13 @@ Route::get('/', 'HomeController@index');
 
 Auth::routes();
 
-Route::get('template', function () {
-    return view('template.index');
-});
 
 Route::group([],function () {
 
     Route::resource('home', 'PostController');
+    
     Route::get('all-post', 'PostController@allPosts')->name('all-posts');
+    
     Route::post('comment/{id}', 'CommentController@addComment')->name('comment');
 
     Route::get('view-comments/{id}', 'CommentController@viewComments')->name('view-comments');
@@ -53,12 +54,12 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group(['middleware' => ['auth']], function () {
 
     Route::get('admin', 'AdminController@index');
+   
     Route::get('/users', 'AdminController@allUsers')->name('all-users');
+   
     Route::get('/assignroles/{id}', 'AdminController@viewrole');
+   
     Route::post('/updateroles/{id}', 'AdminController@updaterole')->name('roleupdate');
 });
 
 Route::get('/global-search', 'GlobalSearch');
-
-
-Route::get('my-demo-mail','HomeController@myDemoMail');
