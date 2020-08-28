@@ -5,7 +5,6 @@
     <title>Blog</title>
     <script src="{{asset('js/jquery.min.js')}}"></script>
     <link rel="stylesheet" type="text/css" href="{{asset('css/templateStyle.css')}}">
-        {{-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"> --}}
      
      <link rel="stylesheet" href="{{asset('datatable/dataTables.min.css')}}">
      <script src="{{asset('datatable/dataTables.min.js')}}" defer></script>
@@ -18,9 +17,7 @@
 
 
         <div id="main-wrapper">
-            <!--**********************************
-            Nav header start
-        ***********************************-->
+
             <div class="nav-header">
                 <div class="brand-logo">
                     <a href="index.html">
@@ -38,12 +35,7 @@
                     </a>
                 </div>
             </div>
-            <!--**********************************
-            Nav header end
-        ***********************************-->
-            <!--**********************************
-            Header start
-        ***********************************-->
+
             <div class="header">
                 <div class="header-content clearfix">
                     <div class="nav-control">
@@ -102,12 +94,7 @@
                 </div>
             </div>
             <hr>
-            <!--**********************************
-            Header end ti-comment-alt
-        ***********************************-->
-            <!--**********************************
-            Sidebar start
-        ***********************************-->
+
             <div class="nk-sidebar">
                 <div class="nk-nav-scroll">
                     <ul class="metismenu" id="menu">
@@ -128,7 +115,7 @@
                                         Home 
                                     </a>
                                 </li>
-                                <!-- <li><a href="./index-2.html">Home 2</a></li> -->
+                             
                             </ul>
                         </li>
                         <li class="mega-menu mega-menu-sm">
@@ -179,23 +166,13 @@
                     </ul>
                 </div>
             </div>
-            <!--**********************************
-            Sidebar end
-        ***********************************-->
-            <!--**********************************
-            Content body start
-        ***********************************-->
+
         <div class="content-body">
                 <div class="container-fluid mt-3">
                       @yield('content')
                     </div>
                 </div>
-            <!--**********************************
-            Content body end
-        ***********************************-->
-            <!--**********************************
-            Footer start
-        ***********************************-->
+
             <div class="footer">
                 <div class="copyright">
                     <p>
@@ -207,13 +184,9 @@
                     </p>
                 </div>
             </div>
-            <!--**********************************
-            Footer end
-        ***********************************-->
+
         </div>
-        <!--**********************************
-        Main wrapper end
-    ***********************************-->
+
  
 
 </body>
@@ -222,10 +195,7 @@
     <script src="{{asset('js/settings.js')}}"></script>
     <script src="{{asset('js/gleek.js')}}"></script>
     <script src="{{asset('js/styleSwitcher.js')}}"></script>
-    <!-- Chartjs -->
 
-
-   
     <script src="{{ asset('plugins/d3v3/index.js') }}"></script>
     <script src="{{ asset('plugins/topojson/topojson.min.js') }}"></script>
     <script src="{{ asset('plugins/datamaps/datamaps.world.min.js') }}"></script>

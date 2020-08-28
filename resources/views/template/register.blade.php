@@ -6,7 +6,6 @@
     <title>Blog</title>
     <script src="{{asset('js/jquery.min.js')}}"></script>
     <link rel="stylesheet" type="text/css" href="{{asset('css/templateStyle.css')}}">
-        {{-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"> --}}
      
      <link rel="stylesheet" href="{{asset('datatable/dataTables.min.css')}}">
      <script src="{{asset('datatable/dataTables.min.js')}}" defer></script>
