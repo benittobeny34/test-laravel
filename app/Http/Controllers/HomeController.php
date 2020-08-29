@@ -14,15 +14,7 @@ use Mail;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        
-    }
+
 
     /**
      * Show the application dashboard.
@@ -40,9 +32,7 @@ class HomeController extends Controller
 
 
     public function myDemoMail(){
-                $myEmail = 'brendonbeni42@gmail.com';
-
-   
+        $myEmail = 'brendonbeni42@gmail.com';
 
         $details = [
 
@@ -52,11 +42,7 @@ class HomeController extends Controller
 
         ];
 
-  
-
         Mail::to($myEmail)->send(new PostMail($details));
-
-   
 
         dd("Mail Send Successfully");
         
