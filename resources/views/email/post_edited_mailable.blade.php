@@ -23,11 +23,12 @@ width: 100% !important;
 }
 </style>
  <div class="inner-body">
- 	<h1 class="subject">{{$details['subject']}}</h1>
+ 	<h1 class="subject">Post Edited</h1>
  	<div class="center">
- 		<h3>{{$details['title']}}</h3>
- 		<p>{{$details['body']}}</p>
+ 		<h3>{{$post->title}}</h3>
+ 		<p>{{$post->description}}</p>
  	</div>
+ 	<a href="http://127.0.0.1:8000/home/".{{$post->id}}>view Post</a>
  </div>
 </body>
 </html>

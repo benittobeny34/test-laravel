@@ -8,9 +8,8 @@ use App\Post;
 
 use Auth;
 
-use App\Mail\PostMail;
 
-use Mail;
+
 
 class HomeController extends Controller
 {

@@ -14,9 +14,7 @@ class GlobalSearch extends Controller
 {
    public function __invoke(Request $request){
     
-    $tags = Tag::select(['id','name'])->where('name', 'LIKE', "%{$
-    	request->key}%")->take(5)->get();
-    
+    $tags = Tag::select(['id','name'])->where('name', 'LIKE', "%{$request->key}%")->take(5)->get();
     $posts = Post::select(['id','name','title','description'])->where('title', 'LIKE', "%{$request->key}%")->take(5)->get();
     
     return response()->json([

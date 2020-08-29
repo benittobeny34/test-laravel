@@ -28,6 +28,13 @@ use App\Comment;
 
 use App\Tag;
 
+use App\Events\PostCreatedEvent;
+
+use App\Events\PostEditedEvent;
+
+use App\Events\PostDeletedEvent;
+
+
 class PostController extends Controller
 {
     /**
@@ -95,21 +102,7 @@ class PostController extends Controller
 
         $post->tags()->attach($tagid);
 
-        $details = [
-
-            'subject' => 'Post Created',
-
-            'title' => $post->title,
-
-            'body' => $post->description,
-
-            'url' => "http://127.0.0.1:8000/home/".$post->id,
-
-        ];
-
-        Mail::to($post->email)->send(new PostMail($details));
-
-        Mail::to($post->email)->send(new PostMailable($details));
+        event(new PostCreatedEvent($post));
 
         return redirect('/home');
     }
@@ -132,9 +125,9 @@ class PostController extends Controller
        
         return view('post.view')->with([
 
-           'post' => $post, '
+           'post' => $post, 
 
-            post_tags' => $post->tags
+           'post_tags' => $post->tags
 
         ]);
     }
@@ -168,22 +161,7 @@ class PostController extends Controller
 
         $post->tags()->sync($tagid);
 
-        $details = [
-
-            'subject' => 'Post Edited',
-
-            'title' => $post->title,
-
-            'body' => $post->description,
-
-            'url' => "http://127.0.0.1:8000/home/".$post->id,
-
-
-        ];
-
-        Mail::to($post->email)->send(new PostMail($details));
-
-        Mail::to($post->email)->send(new PostMailable($details));
+        event(new PostEditedEvent($post));
 
         return response()->json([
             'response' => 'success', 'title' => $request->title, 'description' => $request->description]);
@@ -199,6 +177,8 @@ class PostController extends Controller
         $post->tags()->delete();
         
         $post->delete();
+
+        event(new PostDeletedEvent($post));
         
         return redirect('/home');
     }

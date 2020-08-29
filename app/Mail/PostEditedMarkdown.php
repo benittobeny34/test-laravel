@@ -3,14 +3,13 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-
 use Illuminate\Contracts\Queue\ShouldQueue;
-
 use Illuminate\Mail\Mailable;
-
 use Illuminate\Queue\SerializesModels;
 
-class PostMail extends Mailable
+use App\Post;
+
+class PostEditedMarkdown extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -19,12 +18,11 @@ class PostMail extends Mailable
      *
      * @return void
      */
+    public $post;
 
-    public $details;
-    
-    public function __construct($details)
+    public function __construct(Post $post)
     {
-       $this->details = $details;
+        $this->post = $post;
     }
 
     /**
@@ -34,6 +32,6 @@ class PostMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('email.post');
+        return $this->markdown('email.post_edited_markdown');
     }
 }

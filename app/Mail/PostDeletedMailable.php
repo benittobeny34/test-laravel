@@ -3,14 +3,13 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-
 use Illuminate\Contracts\Queue\ShouldQueue;
-
 use Illuminate\Mail\Mailable;
-
 use Illuminate\Queue\SerializesModels;
 
-class PostMailable extends Mailable
+use App\Post;
+
+class PostDeletedMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -19,11 +18,11 @@ class PostMailable extends Mailable
      *
      * @return void
      */
-    public $details;
+    public $post;
 
-    public function __construct($details)
+    public function __construct(Post $post)
     {
-        $this->details = $details;
+      $this->post = $post;
     }
 
     /**
@@ -33,6 +32,6 @@ class PostMailable extends Mailable
      */
     public function build()
     {
-        return $this->view('email.postmailable');
+        return $this->view('email.post_deleted_mailable');
     }
 }
