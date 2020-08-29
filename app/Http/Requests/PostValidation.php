@@ -34,7 +34,9 @@ class PostValidation extends FormRequest
     public function messages()
     {
         return [
+            
             'title.required' => 'A :attribute is required it something short form of your thoughts',
+            
             'description.required' => 'A message is required. it detailly describe your thoughts',
             
             'tags.required' => 'Minimum one tag is required',

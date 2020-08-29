@@ -10,7 +10,7 @@ use Illuminate\Mail\Mailable;
 
 use Illuminate\Queue\SerializesModels;
 
-class PostMail extends Mailable
+class PostMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -19,12 +19,11 @@ class PostMail extends Mailable
      *
      * @return void
      */
-
     public $details;
-    
+
     public function __construct($details)
     {
-       $this->details = $details;
+        $this->details = $details;
     }
 
     /**
@@ -34,6 +33,6 @@ class PostMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('email.post');
+        return $this->view('email.postmailable');
     }
 }

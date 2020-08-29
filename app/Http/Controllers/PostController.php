@@ -3,9 +3,18 @@
 namespace App\Http\Controllers;
 
 use Debugbar;
+
 use Illuminate\Http\Request;
+
 use App\Http\Requests\PostValidation;
+
 use DB;
+
+use Mail;
+
+use App\Mail\PostMail;
+
+use App\Mail\PostMailable;
 
 use Yajra\Datatables\Datatables;
 
@@ -74,16 +83,33 @@ class PostController extends Controller
 
 
         foreach ($tags as $value) {
+
             if (!(Tag::where('name', $value)->exists())) {
                 $tagid[] = DB::table('tags')->insertGetId(['name' => $value,]);
-            } else {
+            } 
+            else {
                 $tagid[] = Tag::where('name', $value)->pluck('id')->first();
             }
         }
 
-        info($tagid);
 
         $post->tags()->attach($tagid);
+
+        $details = [
+
+            'subject' => 'Post Created',
+
+            'title' => $post->title,
+
+            'body' => $post->description,
+
+            'url' => "http://127.0.0.1:8000/home/".$post->id,
+
+        ];
+
+        Mail::to($post->email)->send(new PostMail($details));
+
+        Mail::to($post->email)->send(new PostMailable($details));
 
         return redirect('/home');
     }
@@ -91,6 +117,7 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::where('id', $id)->first();
+
 
         return view('post.editpost')->with('post', $post);
     }
@@ -103,28 +130,60 @@ class PostController extends Controller
             return view('errors.402');
         }
        
-        return view('post.view')->with(['post' => $post, 'post_tags' => $post->tags]);
+        return view('post.view')->with([
+
+           'post' => $post, '
+
+            post_tags' => $post->tags
+
+        ]);
     }
 
     public function update(PostValidation $request, $id)
     {
 
         Post::find($id)->update($request->only(
-            ['title', 'description',])
-        );
+            
+            ['title', 'description',
+
+        ]));
 
         $tags = explode(",", $request->tags);
 
         foreach ($tags as $value) {
+         
             if (!(Tag::where('name', $value)->exists())) {
+         
                 $tagid[] = DB::table('tags')->insertGetId(['name' => $value,]);
-            } else {
-                $tagid[] = Tag::where('name', $value)->pluck('id')->first();
+         
             }
+             else {
+                $tagid[] = Tag::where('name', $value)->pluck('id')->first();
+            
+            }
+        
         }
 
         $post = Post::find($id);
+
         $post->tags()->sync($tagid);
+
+        $details = [
+
+            'subject' => 'Post Edited',
+
+            'title' => $post->title,
+
+            'body' => $post->description,
+
+            'url' => "http://127.0.0.1:8000/home/".$post->id,
+
+
+        ];
+
+        Mail::to($post->email)->send(new PostMail($details));
+
+        Mail::to($post->email)->send(new PostMailable($details));
 
         return response()->json([
             'response' => 'success', 'title' => $request->title, 'description' => $request->description]);
@@ -132,10 +191,15 @@ class PostController extends Controller
 
     public function destroy($id)
     {
+        
         $post = Post::find($id);
+        
         $post->comments()->delete();
+        
         $post->tags()->delete();
+        
         $post->delete();
+        
         return redirect('/home');
     }
 
@@ -143,8 +207,7 @@ class PostController extends Controller
 
     public function allPosts()
     {
-
-        info('allPosts executed ');
+        
         $posts = Post::all();
 
         return Datatables::of($posts)
@@ -169,8 +232,5 @@ class PostController extends Controller
         # code...
         return view('post.tagpost')->with('posts',Tag::find($id)->posts);
     }
-
-
-
 
 }

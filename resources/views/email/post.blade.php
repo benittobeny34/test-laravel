@@ -1,12 +1,15 @@
 @component('mail::message')
-# Introduction
+# {{$details['subject']}}
 
-The body of your message.
+@component('mail::panel')
+ {{$details['title']}},<br>
+ {{$details['body']}}
+@endcomponent
 
-@component('mail::button', ['url' => '/home'])
-Button Text
+@component('mail::button', ['url' => $details['url'],'color' => 'success'])
+ View Post
 @endcomponent
 
 Thanks,<br>
-{{ config('app.name') }}
+Mallow
 @endcomponent

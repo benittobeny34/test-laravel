@@ -24,32 +24,11 @@ class HomeController extends Controller
     public function index()
     {
         $posts = Post::orderBy('created_at','desc')->paginate(6);
+        
         $latestFive = Post::latest(5);
 
         return view('welcome',compact('posts','latestFive'));
 
     }
-
-
-    public function myDemoMail(){
-        $myEmail = 'brendonbeni42@gmail.com';
-
-        $details = [
-
-            'title' => 'Post Created',
-
-            'url' => 'https://www.itsolutionstuff.com'
-
-        ];
-
-        Mail::to($myEmail)->send(new PostMail($details));
-
-        dd("Mail Send Successfully");
-        
-    }
-
-
-   
-
 
 }

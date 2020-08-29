@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Auth;
+
 use App\Post;
+
 use App\User;
+
 use App\Comment;
 
 use DB;
@@ -16,13 +19,15 @@ class CommentController extends Controller
 
     public function edit($id)
     {
+
         $comment = Comment::where('id', $id)->first();
+
         return view('post.editcomment')->with('comment', $comment);
     }
 
     public function update(Request $request, $id, $post_id)
     {
-        //
+        
         Comment::where('id', $id)->update([
             'comment' => $request->comment,
         ]);
@@ -43,11 +48,11 @@ class CommentController extends Controller
     {
 
         Comment::where('id', $id)->delete();
+        
         return redirect()->back()->with('message', 'Your Comment Deleted Successfully');
 
     }
 
-    //Task 15
 
     public function addComment(Request $request, $id)
     {
@@ -57,8 +62,11 @@ class CommentController extends Controller
         ]);
 
         $comment = new Comment;
+       
         $comment->comment = $request->comment;
+       
         $comment->post_id = $id;
+       
         $comment->commented_by = Auth::id();
 
         $comment->save();

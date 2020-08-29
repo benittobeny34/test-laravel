@@ -11,6 +11,7 @@ use Yajra\Datatables\Datatables;
 use App\Http\Requests\PostValidation;
 
 use Spatie\Permission\Models\Role;
+
 use Spatie\Permission\Models\Permission;
 
 class AdminController extends Controller
@@ -40,7 +41,6 @@ class AdminController extends Controller
     public function updaterole(Request $request, $id)
     {
 
-        // dd($request->all());
         $request->validate(
             [
                 'role' => 'bail|required',
@@ -59,9 +59,12 @@ class AdminController extends Controller
 
 
         foreach ($request->permission as $permission) {
+
             $per = Permission::where('name', $permission)->first();
+
             if (!$per)
                 $per = Permission::create(['name' => $permission]);
+
             else
                 $per = Permission::findByName($permission);
 
