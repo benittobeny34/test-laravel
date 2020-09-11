@@ -2,37 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Debugbar;
-
-use Illuminate\Http\Request;
-
-use App\Http\Requests\PostValidation;
-
-use DB;
-
-use Mail;
-
-use App\Mail\PostMail;
-
-use App\Mail\PostMailable;
-
-use Yajra\Datatables\Datatables;
-
-use Auth;
-
-use App\User;
-
-use App\Post;
-
 use App\Comment;
-
-use App\Tag;
-
 use App\Events\PostCreatedEvent;
-
-use App\Events\PostEditedEvent;
-
 use App\Events\PostDeletedEvent;
+use App\Events\PostEditedEvent;
+use App\Http\Requests\PostValidation;
+use App\Mail\PostMail;
+use App\Mail\PostMailable;
+use App\Post;
+use App\Tag;
+use App\User;
+use Auth;
+use DB;
+use Debugbar;
+use Illuminate\Http\Request;
+use Mail;
+use Yajra\Datatables\Datatables;
 
 
 class PostController extends Controller

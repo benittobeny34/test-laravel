@@ -4,15 +4,9 @@ use App\Post;
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/check', function () {
-   
-    return Post::withCount('comments')->orderBy('comments_count', 'desc')->take(10)->get();
-});
-
 Route::get('/', 'HomeController@index');
 
 Auth::routes();
-
 
 Route::group([],function () {
 
@@ -63,5 +57,3 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 Route::get('/global-search', 'GlobalSearch');
-
-
