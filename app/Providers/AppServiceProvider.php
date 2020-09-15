@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Providers;
+use App\Charts\MonthWiseChart;
+use App\Tag;
+use ConsoleTVs\Charts\Registrar as Charts;
 use DB;
-use Log;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use App\Tag;
+use Log;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -25,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(Charts $charts)
     {
          DB::listen(function($query) {
             Log::info(
@@ -34,5 +36,10 @@ class AppServiceProvider extends ServiceProvider
                 $query->time
             );
         });
+                 $charts->register([
+            \App\Charts\UserChart::class,
+            \App\Charts\MonthWiseChart::class,
+            \App\Charts\YearWiseChart::class,
+        ]);
     }
 }

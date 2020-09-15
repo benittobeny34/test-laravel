@@ -25,6 +25,7 @@
                 <div class="links">
                   <a href="{{route('your-posts')}}"> <li>View Your Post</li></a>
                     <a href="#" disabled><li>Your Comments</li></a>
+                    <a href="/chats" disabled><li>View in chats</li></a>
                 </div>
             </div> 
         @endauth          
