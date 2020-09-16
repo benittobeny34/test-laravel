@@ -57,3 +57,6 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 Route::get('/global-search', 'GlobalSearch');
+Route::get('/chats', function () {
+        return view('chart.userchart');
+});
