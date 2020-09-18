@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\ApiCommentController;
+use App\Http\Controllers\ApiPostcontroller;
+use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +19,24 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::apiResource('/posts','ApiPostcontroller');
+Route::group(['prefix'=>'posts'],function(){
+	Route::apiResource('/{post}/comments','ApiCommentController');
+});
+
+Route::group([
+
+    'middleware' => 'api',
+    'prefix' => 'auth'
+
+], function ($router) {
+
+    Route::post('login', 'AuthController@login');
+    Route::post('logout', 'AuthController@logout');
+    Route::post('refresh', 'AuthController@refresh');
+    Route::post('me', 'AuthController@me');
+    Route::post('payload', 'AuthController@payload');
+
 });
