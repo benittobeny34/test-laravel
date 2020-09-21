@@ -16,10 +16,11 @@
             <li class="nav-items">
                 <a class="nav-links" href="{{route('register')}}">Register</a>
             </li>
-            @else
+            @endguest
+            @auth
                <li class="nav-item dropdown">
 
-                             @role('admin')
+                          @role('admin')
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/admin') }}">{{ __('Home') }}</a>
                             </li>
@@ -43,7 +44,7 @@
                                 </form>
                             </div>
                             </li>
-           @endguest
+           @endauth
 
             <form class="search">
                 <input class="input-search" type="search" placeholder="Search" aria-label="Search"></input>
